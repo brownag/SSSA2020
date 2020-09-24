@@ -1,0 +1,111 @@
+---
+output: 
+  xaringan::moon_reader:
+    css: [default, metropolis, metropolis-fonts]
+    seal: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+---
+background-image: url(static/NRCS_General_-_November_2017_FINAL.jpg)
+background-size: contain
+
+<!--
+Abstract:
+
+Algorithms for Quantitative Pedology was designed to be a “toolkit for soil scientists.” The aqp R package provides functions that support data-driven tasks such as visualization, aggregation, and classification of soil profiles. The code is open-source and under active development by members of the National Cooperative Soil Survey (https://github.com/ncss-tech/aqp). The aqp project is an example of 10 years of continuity of analytical software development by volunteers and government employees.
+
+Recent additions to the package include new functionality for working with groups and portions of profiles. Major changes have been made to the structure of the SoilProfileCollection object, iteration (profileApply), filtering (filter) and sub-setting ([[, glom, split/union). For iteration over large (n > 10,000) collections of soil profiles, optimizations have yielded over an order of magnitude decrease in processing time relative to earlier versions (pre-1.18.5), bringing larger analyses within reach. New “verbs” simplify syntax: allowing users to answer their pedologic questions with fewer intermediate steps and lines of code. These enhancements provide a basis for new functions that use horizon attributes to estimate U.S. Soil Taxonomy criteria, diagnostic features, and more.
+
+With pedon and component data obtained from the soilDB R package (https://github.com/ncss-tech/soilDB) and other sources, new aqp functions can be used to increase efficiency of quality control on soil survey data, for evaluation of taxonomic structures, as well as for testing of new criteria. The automated estimation of taxonomic criteria has been successfully applied in review of 2020 NCSS Regional Standards and Taxonomy Committee Proposals as well as for routine soil survey applications in the Southwest Soil Survey Region.
+-->
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
+```
+<br><br><br>
+
+.pull-left[##<font color="black">Expanding the 'Toolkit for Soil Scientists'</font>
+### The <code>aqp</code> <b>R</b> package.
+
+#### SSSA 2020 -- Big Data with Soil Survey, Capacity Building]
+
+.pull-right[.large[<br><br><br><br>Andrew G. Brown<br>Dylan E. Beaudette</b><br>
+<a href="mailto:andrew.g.brown@usda.gov"><i class="fa fa-paper-plane fa-fw"></i>&nbsp;andrew.g.brown@usda.gov</a><br>
+<a href="http://github.com/brownag"><i class="fa fa-github fa-fw"></i>&nbsp;brownag</a><br>
+<a href="http://twitter.com/humus_rocks"><i class="fa fa-twitter fa-fw"></i>&nbsp;@humus_rocks</a>]]
+
+---
+background-image: url(static/NRCS_General_-_November_2017_FINAL_regular.jpg)
+background-size: contain
+
+# Algorithms for Quantitative Pedology
+
+.left-column[<br><br>
+![](https://raw.githubusercontent.com/ncss-tech/aqp/master/misc/hexstickers/aqp_sticker_v2.png)
+]
+
+.right-column[
+
+The {aqp} **R** package provides functions that support data-driven tasks such as visualization, aggregation, and classification of soil profiles. 
+
+Project Homepage:
+
+ - http://ncss-tech.github.io/AQP
+
+{aqp} on CRAN (_stable_):
+
+ - http://cran.r-project.org/web/packages/aqp/index.html
+
+{aqp} on GitHub (_development_): 
+
+ - http://github.com/ncss-tech/aqp
+
+]
+---
+
+# Who are we?
+
+.pull-left[
+![](https://github.com/brownag.png)
+]
+
+.pull-right[
+#### Andrew G. Brown
+ - TODO
+]
+---
+
+# {aqp} Basics: soil data
+
+```{r, message=FALSE}
+library(aqp)
+data(sp4, package = "aqp")
+head(sp4)
+```
+---
+
+# {aqp} Basics: the _SoilProfileCollection_
+
+```{r}
+# promote data.frame/tibble/data.table to SoilProfileCollection
+depths(sp4) <- id ~ top + bottom #<<
+
+# inspect "site" data
+head(site(sp4))
+
+# inspect "horizon" data
+head(horizons(sp4))
+```
+
+??? You can promote data.frame objects, to SoilProfileCollection objects. You begin with the "horizon" or layer data -- where unique layers are distinguished by the combination of site `id` and `top` depth. A brand new feature is the ability to use data.table and tibble data.frame subclasses inside SoilProfileCollection objects. This allows for faster calculations and joins {data.table} as well as enhanced compatibility with {tidyverse} workflows.
+
+---
+
+# {aqp} Basics: plot methods
+```{r, fig.width=10} 
+plot(sp4, color = 'clay', cex.names = 1)
+```
+
+??? A major feature of a SoilProfileCollection is the plot methods. This provides for a rapid way to visualize geometric and tabular data from a set of soil profiles. Here, we are viewing all profiles in the `sp4` SoilProfileCollection object, with the thematic attribute "clay" (% clay content). The default arguments of `plot` often need to be adjusted for figures containing very small or very large numbers of profiles. For better readability, we use a larger-than-default character expansion value for the labels.
+---

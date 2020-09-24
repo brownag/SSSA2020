@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Expanding-the-Toolkit-for-Soil-Scientists.utf8</title>
+    <meta charset="utf-8" />
+    <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+
+background-image: url(static/NRCS_General_-_November_2017_FINAL.jpg)
+background-size: contain
+
+&lt;!--
+Abstract:
+
+Algorithms for Quantitative Pedology was designed to be a “toolkit for soil scientists.” The aqp R package provides functions that support data-driven tasks such as visualization, aggregation, and classification of soil profiles. The code is open-source and under active development by members of the National Cooperative Soil Survey (https://github.com/ncss-tech/aqp). The aqp project is an example of 10 years of continuity of analytical software development by volunteers and government employees.
+
+Recent additions to the package include new functionality for working with groups and portions of profiles. Major changes have been made to the structure of the SoilProfileCollection object, iteration (profileApply), filtering (filter) and sub-setting ([[, glom, split/union). For iteration over large (n &gt; 10,000) collections of soil profiles, optimizations have yielded over an order of magnitude decrease in processing time relative to earlier versions (pre-1.18.5), bringing larger analyses within reach. New “verbs” simplify syntax: allowing users to answer their pedologic questions with fewer intermediate steps and lines of code. These enhancements provide a basis for new functions that use horizon attributes to estimate U.S. Soil Taxonomy criteria, diagnostic features, and more.
+
+With pedon and component data obtained from the soilDB R package (https://github.com/ncss-tech/soilDB) and other sources, new aqp functions can be used to increase efficiency of quality control on soil survey data, for evaluation of taxonomic structures, as well as for testing of new criteria. The automated estimation of taxonomic criteria has been successfully applied in review of 2020 NCSS Regional Standards and Taxonomy Committee Proposals as well as for routine soil survey applications in the Southwest Soil Survey Region.
+--&gt;
+
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+.pull-left[##&lt;font color="black"&gt;Expanding the 'Toolkit for Soil Scientists'&lt;/font&gt;
+### The &lt;code&gt;aqp&lt;/code&gt; &lt;b&gt;R&lt;/b&gt; package.
+
+#### SSSA 2020 -- Big Data with Soil Survey, Capacity Building]
+
+.pull-right[.large[&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;Andrew G. Brown&lt;br&gt;Dylan E. Beaudette&lt;/b&gt;&lt;br&gt;
+&lt;a href="mailto:andrew.g.brown@usda.gov"&gt;&lt;i class="fa fa-paper-plane fa-fw"&gt;&lt;/i&gt;&amp;nbsp;andrew.g.brown@usda.gov&lt;/a&gt;&lt;br&gt;
+&lt;a href="http://github.com/brownag"&gt;&lt;i class="fa fa-github fa-fw"&gt;&lt;/i&gt;&amp;nbsp;brownag&lt;/a&gt;&lt;br&gt;
+&lt;a href="http://twitter.com/humus_rocks"&gt;&lt;i class="fa fa-twitter fa-fw"&gt;&lt;/i&gt;&amp;nbsp;@humus_rocks&lt;/a&gt;]]
+
+---
+background-image: url(static/NRCS_General_-_November_2017_FINAL_regular.jpg)
+background-size: contain
+
+# Algorithms for Quantitative Pedology
+
+.left-column[&lt;br&gt;&lt;br&gt;
+![](https://raw.githubusercontent.com/ncss-tech/aqp/master/misc/hexstickers/aqp_sticker_v2.png)
+]
+
+.right-column[
+
+The {aqp} **R** package provides functions that support data-driven tasks such as visualization, aggregation, and classification of soil profiles. 
+
+Project Homepage:
+
+ - http://ncss-tech.github.io/AQP
+
+{aqp} on CRAN (_stable_):
+
+ - http://cran.r-project.org/web/packages/aqp/index.html
+
+{aqp} on GitHub (_development_): 
+
+ - http://github.com/ncss-tech/aqp
+
+]
+---
+
+# Who are we?
+
+.pull-left[
+![](https://github.com/brownag.png)
+]
+
+.pull-right[
+#### Andrew G. Brown
+ - TODO
+]
+---
+
+# {aqp} Basics: soil data
+
+
+```r
+library(aqp)
+data(sp4, package = "aqp")
+head(sp4)
+```
+
+```
+##       id name top bottom   K   Mg  Ca CEC_7 ex_Ca_to_Mg sand silt clay   CF
+## 1 colusa    A   0      3 0.3 25.7 9.0  23.0        0.35   46   33   21 0.12
+## 2 colusa  ABt   3      8 0.2 23.7 5.6  21.4        0.23   42   31   27 0.27
+## 3 colusa  Bt1   8     30 0.1 23.2 1.9  23.7        0.08   40   28   32 0.27
+## 4 colusa  Bt2  30     42 0.1 44.3 0.3  43.0        0.01   27   18   55 0.16
+## 5  glenn    A   0      9 0.2 21.9 4.4  18.8        0.20   54   20   25 0.55
+## 6  glenn   Bt   9     34 0.3 18.9 4.5  27.5        0.20   49   18   34 0.84
+```
+---
+
+# {aqp} Basics: the _SoilProfileCollection_
+
+
+```r
+# promote data.frame/tibble/data.table to SoilProfileCollection
+*depths(sp4) &lt;- id ~ top + bottom
+
+# inspect "site" data
+head(site(sp4))
+```
+
+```
+##          id
+## 1    colusa
+## 2     glenn
+## 3     kings
+## 4  mariposa
+## 5 mendocino
+## 6      napa
+```
+
+```r
+# inspect "horizon" data
+head(horizons(sp4))
+```
+
+```
+##       id name top bottom   K   Mg  Ca CEC_7 ex_Ca_to_Mg sand silt clay   CF
+## 1 colusa    A   0      3 0.3 25.7 9.0  23.0        0.35   46   33   21 0.12
+## 2 colusa  ABt   3      8 0.2 23.7 5.6  21.4        0.23   42   31   27 0.27
+## 3 colusa  Bt1   8     30 0.1 23.2 1.9  23.7        0.08   40   28   32 0.27
+## 4 colusa  Bt2  30     42 0.1 44.3 0.3  43.0        0.01   27   18   55 0.16
+## 5  glenn    A   0      9 0.2 21.9 4.4  18.8        0.20   54   20   25 0.55
+## 6  glenn   Bt   9     34 0.3 18.9 4.5  27.5        0.20   49   18   34 0.84
+##   hzID
+## 1    1
+## 2    2
+## 3    3
+## 4    4
+## 5    5
+## 6    6
+```
+
+??? You can promote data.frame objects, to SoilProfileCollection objects. You begin with the "horizon" or layer data -- where unique layers are distinguished by the combination of site `id` and `top` depth. A brand new feature is the ability to use data.table and tibble data.frame subclasses inside SoilProfileCollection objects. This allows for faster calculations and joins {data.table} as well as enhanced compatibility with {tidyverse} workflows.
+
+---
+
+# {aqp} Basics: plot methods
+
+```r
+plot(sp4, color = 'clay', cex.names = 1)
+```
+
+&lt;img src="Expanding-the-Toolkit-for-Soil-Scientists_files/figure-html/unnamed-chunk-3-1.png" width="720" /&gt;
+
+??? A major feature of a SoilProfileCollection is the plot methods. This provides for a rapid way to visualize geometric and tabular data from a set of soil profiles. Here, we are viewing all profiles in the `sp4` SoilProfileCollection object, with the thematic attribute "clay" (% clay content). The default arguments of `plot` often need to be adjusted for figures containing very small or very large numbers of profiles. For better readability, we use a larger-than-default character expansion value for the labels.
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
