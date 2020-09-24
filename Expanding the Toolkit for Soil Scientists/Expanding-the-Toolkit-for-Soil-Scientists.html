@@ -4,7 +4,7 @@
     <title>Expanding-the-Toolkit-for-Soil-Scientists.utf8</title>
     <meta charset="utf-8" />
     <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/hygge.css" rel="stylesheet" />
     <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
   </head>
   <body>
@@ -31,16 +31,13 @@ With pedon and component data obtained from the soilDB R package (https://github
 
 #### SSSA 2020 -- Big Data with Soil Survey, Capacity Building]
 
-.pull-right[.large[&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;Andrew G. Brown&lt;br&gt;Dylan E. Beaudette&lt;/b&gt;&lt;br&gt;
+
+.right[.large[&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;Andrew G. Brown&lt;br&gt;Dylan E. Beaudette&lt;/b&gt;&lt;br&gt;
 &lt;a href="mailto:andrew.g.brown@usda.gov"&gt;&lt;i class="fa fa-paper-plane fa-fw"&gt;&lt;/i&gt;&amp;nbsp;andrew.g.brown@usda.gov&lt;/a&gt;&lt;br&gt;
 &lt;a href="http://github.com/brownag"&gt;&lt;i class="fa fa-github fa-fw"&gt;&lt;/i&gt;&amp;nbsp;brownag&lt;/a&gt;&lt;br&gt;
 &lt;a href="http://twitter.com/humus_rocks"&gt;&lt;i class="fa fa-twitter fa-fw"&gt;&lt;/i&gt;&amp;nbsp;@humus_rocks&lt;/a&gt;]]
 
 ---
-background-image: url(static/NRCS_General_-_November_2017_FINAL_regular.jpg)
-background-size: contain
-
-# Algorithms for Quantitative Pedology
 
 .left-column[&lt;br&gt;&lt;br&gt;
 ![](https://raw.githubusercontent.com/ncss-tech/aqp/master/misc/hexstickers/aqp_sticker_v2.png)
@@ -63,9 +60,498 @@ Project Homepage:
  - http://github.com/ncss-tech/aqp
 
 ]
+
 ---
 
+# {aqp} soil data inputs
+
+There are several sample soil profile datasets provided in the {aqp} package. For the next few introductory slides, we use sample data #4: CA Serpentine Soils (McGahan et al., 2009)
+
+
+```r
+library(aqp) # load aqp package
+
+data(sp4, package = "aqp") # see ?sp4 for metadata
+```
+
+
+--
+### Optional: use `data.table` or `tibble`!
+
+```r
+sp4 &lt;- data.table::as.data.table(sp4)
+sp4 &lt;- tibble::as_tibble(sp4)
+sp4
+```
+
+```
+## # A tibble: 30 x 12
+##    id     name    top bottom     K    Mg    Ca CEC_7  sand  silt  clay    CF
+##    &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
+##  1 colusa A         0      3   0.3  25.7   9    23      46    33    21  0.12
+##  2 colusa ABt       3      8   0.2  23.7   5.6  21.4    42    31    27  0.27
+##  3 colusa Bt1       8     30   0.1  23.2   1.9  23.7    40    28    32  0.27
+##  4 colusa Bt2      30     42   0.1  44.3   0.3  43      27    18    55  0.16
+##  5 glenn  A         0      9   0.2  21.9   4.4  18.8    54    20    25  0.55
+##  6 glenn  Bt        9     34   0.3  18.9   4.5  27.5    49    18    34  0.84
+##  7 kings  A         0      4   0.2  12.1   1.4  23.7    43    55     3  0.5 
+##  8 kings  Bt1       4     13   0.6  12.1   7    18      36    49    15  0.75
+##  9 kings  Bt2      13     40   0.8  17.7   4.4  20      27    45    27  0.67
+## 10 napa   A         0      6   0.4  16.4  24.1  31.1    43    42    15  0.02
+## # ... with 20 more rows
+```
+
+??? 
+
+You probably have data with a similar structure lying around on your hard drive. Why not try some of the following routines with your own data? We also welcome contributions of datasets that demonstrate interesting pedogenic concepts! Contact me or Dylan if interested.
+---
+
+# {aqp} _SoilProfileCollection_
+
+
+```r
+class(sp4)
+```
+
+```
+## [1] "tbl_df"     "tbl"        "data.frame"
+```
+
+"Promote" _data.frame_-like horizon data to a _SoilProfileCollection_ object.
+
+
+```r
+*depths(sp4) &lt;- id ~ top + bottom # specify site ID, top and bottom depth
+
+class(sp4) # sp4 promoted from tbl_df -&gt; SoilProfileCollection
+```
+
+```
+## [1] "SoilProfileCollection"
+## attr(,"package")
+## [1] "aqp"
+```
+
+```r
+profile_id(sp4) # view profile IDs
+```
+
+```
+##  [1] "colusa"         "glenn"          "kings"          "mariposa"      
+##  [5] "mendocino"      "napa"           "san benito"     "shasta"        
+##  [9] "shasta-trinity" "tehama"
+```
+
+???
+
+You can promote data.frame-like objects containing horizon data to SoilProfileCollection objects. Unique layers are distinguished by the combination of site `id` and `top` depth. A brand new feature is the ability to use {data.table} and {tibble} data.frame subclasses inside SoilProfileCollection objects. This allows for faster subset operations and joins {data.table} as well as enhanced compatibility with {tidyverse} workflows and/or user-preferred packages.
+---
+
+# {aqp} S4 methods (basics)
+
+.pull-left[
+#### `site`,SoilProfileCollection-method
+
+```r
+site(sp4) # "site" data
+```
+
+```
+## # A tibble: 10 x 1
+##    id            
+##    &lt;chr&gt;         
+##  1 colusa        
+##  2 glenn         
+##  3 kings         
+##  4 mariposa      
+##  5 mendocino     
+##  6 napa          
+##  7 san benito    
+##  8 shasta        
+##  9 shasta-trinity
+## 10 tehama
+```
+
+]
+
+.pull-right[
+
+#### `horizons`,SoilProfileCollection-method
+
+```r
+horizons(sp4) # "horizon" data
+```
+
+#### `plot`,SoilProfileCollection-method
+
+```r
+plot(sp4, 
+     color = 'clay', 
+     cex.names = 1)
+```
+
+&lt;img src="Expanding-the-Toolkit-for-Soil-Scientists_files/figure-html/unnamed-chunk-8-1.png" width="864" /&gt;
+]
+
+???
+
+The site and horizons methods provide access to the S4 site and horizon slots within the SoilProfileCollection object.
+
+A major feature of aqp and the SoilProfileCollection are the plot methods. These provide a rapid way to visualize geometric and tabular data from a set of soil profiles. Here, we are viewing all profiles in the `sp4` SoilProfileCollection object, with the thematic attribute "clay" (% clay content). The default arguments of `plot` often need to be adjusted for figures containing very small or very large numbers of profiles. For better readability, we use a larger-than-default character expansion value for the labels.
+---
+
+# {aqp} S4 methods (subset)
+
+#### `[`,SoilProfileCollection-method
+
+```r
+sp4[1:2,] # i-index: first two profiles 
+```
+
+
+```r
+sp4[,1:2] # j-index: first two horizons (of each profile!)
+```
+
+```
+## SoilProfileCollection with 10 profiles and 20 horizons
+## profile ID: id  |  horizon ID: hzID 
+## Depth range: 5 - 40 cm
+## 
+## ----- Horizons (6 / 20 rows  |  10 / 13 columns) -----
+## # A tibble: 6 x 10
+##   id     hzID    top bottom name      K    Mg    Ca CEC_7  sand
+##   &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 colusa 1         0      3 A       0.3  25.7   9    23      46
+## 2 colusa 2         3      8 ABt     0.2  23.7   5.6  21.4    42
+## 3 glenn  5         0      9 A       0.2  21.9   4.4  18.8    54
+## 4 glenn  6         9     34 Bt      0.3  18.9   4.5  27.5    49
+## 5 kings  7         0      4 A       0.2  12.1   1.4  23.7    43
+## 6 kings  8         4     13 Bt1     0.6  12.1   7    18      36
+## [... more horizons ...]
+## 
+## ----- Sites (6 / 10 rows  |  1 / 1 columns) -----
+## # A tibble: 6 x 1
+##   id       
+##   &lt;chr&gt;    
+## 1 colusa   
+## 2 glenn    
+## 3 kings    
+## 4 mariposa 
+## 5 mendocino
+## 6 napa     
+## [... more sites ...]
+## 
+## Spatial Data: [EMPTY]
+```
+
+---
+# {aqp} S4 methods (accessors)
+
+#### `$` and `[[`,SoilProfileCollection-methods
+
+```r
+sp4$clay       # get clay data 
+```
+
+```
+##  [1] 21 27 32 55 25 34  3 15 27 32 25 31 33 13 21 23 15 17 12 19 14 14 22 25 40
+## [26] 51 67 24 25 32
+```
+
+```r
+sp4[["clay"]]  # using expression for name, not symbol
+```
+
+```
+##  [1] 21 27 32 55 25 34  3 15 27 32 25 31 33 13 21 23 15 17 12 19 14 14 22 25 40
+## [26] 51 67 24 25 32
+```
+---
+# {aqp} S4 methods (setters)
+
+#### `$&lt;-` and `[[&lt;-`,SoilProfileCollection-methods
+
+```r
+sp4$ex_Ca_to_Mg      &lt;- sp4$Ca / sp4$Mg # calculate Ca:Mg ratio 
+sp4[["ex_Ca_to_Mg"]] &lt;- sp4$Ca / sp4$Mg # "
+```
+
+#### Initialize a new column with a singleton
+
+```r
+site(sp4)$new_var &lt;- 2 
+length(sp4$new_var)
+```
+
+```
+## [1] 10
+```
+
+```r
+horizons(sp4)$new_hz_var &lt;- 3 
+length(sp4$new_hz_var)
+```
+
+```
+## [1] 30
+```
+
+#### Remove a column 
+
+```r
+site(sp4)$new_var &lt;- NULL 
+```
+---
+
+# {aqp} S4 methods (joins)
+
+#### `site&lt;-`,SoilProfileCollection-method
+
+```r
+*site(sp4) &lt;- data.frame(id = c("mariposa","mendocino"), site_grp = "ingroup")
+head(site(sp4), 5)
+```
+
+```
+## # A tibble: 5 x 2
+##   id        site_grp
+##   &lt;chr&gt;     &lt;chr&gt;   
+## 1 colusa    &lt;NA&gt;    
+## 2 glenn     &lt;NA&gt;    
+## 3 kings     &lt;NA&gt;    
+## 4 mariposa  ingroup 
+## 5 mendocino ingroup
+```
+
+#### `horizons&lt;-`,SoilProfileCollection-method
+
+```r
+*horizons(sp4) &lt;- data.frame(id = c("mariposa","mendocino"), hz_grp = "group")
+
+table(horizons(sp4)$hz_grp, useNA = "ifany")
+```
+
+```
+## 
+## group  &lt;NA&gt; 
+##     7    23
+```
+
+---
+# {aqp} S4 methods (filtering)
+
+`filter` and other new {dplyr}-like verbs in {aqp} use {rlang} for non-standard evaluation. This results in less typing and easier to read code!
+
+
+```r
+# site property
+*subsp4 &lt;- filter(sp4, id %in% c("colusa","mariposa","shasta"))
+subsp4
+```
+
+```
+## SoilProfileCollection with 3 profiles and 10 horizons
+## profile ID: id  |  horizon ID: hzID 
+## Depth range: 40 - 49 cm
+## 
+## ----- Horizons (6 / 10 rows  |  10 / 16 columns) -----
+## # A tibble: 6 x 10
+##   id       hzID    top bottom name      K    Mg    Ca CEC_7  sand
+##   &lt;chr&gt;    &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 colusa   1         0      3 A       0.3  25.7   9    23      46
+## 2 colusa   2         3      8 ABt     0.2  23.7   5.6  21.4    42
+## 3 colusa   3         8     30 Bt1     0.1  23.2   1.9  23.7    40
+## 4 colusa   4        30     42 Bt2     0.1  44.3   0.3  43      27
+## 5 mariposa 10        0      3 A       0.6  28.3   5.8  29.3    42
+## 6 mariposa 11        3     14 Bt1     0.4  33.7   6.2  27.9    41
+## [... more horizons ...]
+## 
+## ----- Sites (3 / 3 rows  |  2 / 2 columns) -----
+## # A tibble: 3 x 2
+##   id       site_grp
+##   &lt;chr&gt;    &lt;chr&gt;   
+## 1 colusa   &lt;NA&gt;    
+## 2 mariposa ingroup 
+## 3 shasta   &lt;NA&gt;    
+## 
+## Spatial Data: [EMPTY]
+```
+---
+# {aqp} S4 methods (filtering)
+
+Horizon-level filtering uses `ANY` not `ALL` logic. You can mix site and horizon level logic. Use the `greedy` argument to toggle the _union_ versus _intersection_ of site/horizon matches.
+
+
+```r
+# horizon properties (two simultaneous logical expressions)
+*subsp4 &lt;- filter(sp4, clay &gt; 30, ex_Ca_to_Mg &lt; 0.05)
+subsp4
+```
+
+```
+## SoilProfileCollection with 2 profiles and 9 horizons
+## profile ID: id  |  horizon ID: hzID 
+## Depth range: 40 - 42 cm
+## 
+## ----- Horizons (6 / 9 rows  |  10 / 16 columns) -----
+## # A tibble: 6 x 10
+##   id             hzID    top bottom name      K    Mg    Ca CEC_7  sand
+##   &lt;chr&gt;          &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 colusa         1         0      3 A       0.3  25.7   9    23      46
+## 2 colusa         2         3      8 ABt     0.2  23.7   5.6  21.4    42
+## 3 colusa         3         8     30 Bt1     0.1  23.2   1.9  23.7    40
+## 4 colusa         4        30     42 Bt2     0.1  44.3   0.3  43      27
+## 5 shasta-trinity 23        0      2 A1      0.2  18.8   6.6  23      34
+## 6 shasta-trinity 24        2      5 A2      0.2  25.5   4.1  21.5    33
+## [... more horizons ...]
+## 
+## ----- Sites (2 / 2 rows  |  2 / 2 columns) -----
+## # A tibble: 2 x 2
+##   id             site_grp
+##   &lt;chr&gt;          &lt;chr&gt;   
+## 1 colusa         &lt;NA&gt;    
+## 2 shasta-trinity &lt;NA&gt;    
+## 
+## Spatial Data: [EMPTY]
+```
+
+---
+# {aqp} iteration
+
+
+```r
+f &lt;- profileApply(sp4, estimateSoilDepth)
+```
+--
+
+With recent internal optimizations, `profileApply` now scales much better to larger collections.
+
+![](static/chunkApply.png)
+
+???
+
+"Use `profileApply` to apply a function to each profile in a _SoilProfileCollection_, like base **R** `*apply`. You can use the `simplify` and `frameify` arguments to change the result object type."
+
+---
+# {aqp} split (SPC -&gt; list)
+
+
+```r
+f &lt;- aqp::split(sp4, f = idname(sp4))
+str(f, max.level = 1)
+```
+
+```
+## List of 10
+##  $ colusa        :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ glenn         :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ kings         :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ mariposa      :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ mendocino     :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ napa          :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ san benito    :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ shasta        :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ shasta-trinity:Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ tehama        :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+```
+
+```r
+f[[1]]
+```
+
+```
+## SoilProfileCollection with 1 profiles and 4 horizons
+## profile ID: id  |  horizon ID: hzID 
+## Depth range: 42 - 42 cm
+## 
+## ----- Horizons (4 / 4 rows  |  10 / 16 columns) -----
+## # A tibble: 4 x 10
+##   id     hzID    top bottom name      K    Mg    Ca CEC_7  sand
+##   &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 colusa 1         0      3 A       0.3  25.7   9    23      46
+## 2 colusa 2         3      8 ABt     0.2  23.7   5.6  21.4    42
+## 3 colusa 3         8     30 Bt1     0.1  23.2   1.9  23.7    40
+## 4 colusa 4        30     42 Bt2     0.1  44.3   0.3  43      27
+## 
+## ----- Sites (1 / 1 rows  |  2 / 2 columns) -----
+## # A tibble: 1 x 2
+##   id     site_grp
+##   &lt;chr&gt;  &lt;chr&gt;   
+## 1 colusa &lt;NA&gt;    
+## 
+## Spatial Data:
+##      [,1]
+## [1,]   NA
+## [1] NA
+```
+---
+
+# {aqp} union (list -&gt; SPC)
+
+```r
+sp4 &lt;- aqp::union(f)
+sp4
+```
+
+```
+## SoilProfileCollection with 10 profiles and 30 horizons
+## profile ID: id  |  horizon ID: hzID 
+## Depth range: 16 - 49 cm
+## 
+## ----- Horizons (6 / 30 rows  |  10 / 16 columns) -----
+## # A tibble: 6 x 10
+##   id     hzID    top bottom name      K    Mg    Ca CEC_7  sand
+##   &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 colusa 1         0      3 A       0.3  25.7   9    23      46
+## 2 colusa 2         3      8 ABt     0.2  23.7   5.6  21.4    42
+## 3 colusa 3         8     30 Bt1     0.1  23.2   1.9  23.7    40
+## 4 colusa 4        30     42 Bt2     0.1  44.3   0.3  43      27
+## 5 glenn  5         0      9 A       0.2  21.9   4.4  18.8    54
+## 6 glenn  6         9     34 Bt      0.3  18.9   4.5  27.5    49
+## [... more horizons ...]
+## 
+## ----- Sites (6 / 10 rows  |  2 / 2 columns) -----
+## # A tibble: 6 x 2
+##   id        site_grp
+##   &lt;chr&gt;     &lt;chr&gt;   
+## 1 colusa    &lt;NA&gt;    
+## 2 glenn     &lt;NA&gt;    
+## 3 kings     &lt;NA&gt;    
+## 4 mariposa  ingroup 
+## 5 mendocino ingroup 
+## 6 napa      &lt;NA&gt;    
+## [... more sites ...]
+## 
+## Spatial Data: [EMPTY]
+```
+---
+# {aqp} `%&gt;%` (pipe operator)
+
+Many new methods in {aqp} take a _SoilProfileCollection_ as first argument, and return a _SoilProfileCollection_. Use {magrittr} pipes `%&gt;%` to decrease development time and improve readability. 
+
+
+```r
+*f(x, y) == x %&gt;% f(y)
+```
+
+
+```r
+library(magrittr)
+
+sp4 %&gt;%
+  trunc(0, 15) %&gt;%
+  aqp::mutate(thk = bottom - top) %&gt;%
+  mutate_profile(dwt = thk / sum(thk),
+                 dwt_Ca = sum(Ca * dwt)) %&gt;%
+  plot(plot.order = order(.$dwt_Ca), color = "Ca", cex.names = 1)
+```
+--
+&lt;img src="Expanding-the-Toolkit-for-Soil-Scientists_files/figure-html/unnamed-chunk-23-1.png" width="864" /&gt;
+
 # Who are we?
+background-image: url(static/NRCS_General_-_November_2017_FINAL_regular.jpg)
+background-size: contain
 
 .pull-left[
 ![](https://github.com/brownag.png)
@@ -75,85 +561,6 @@ Project Homepage:
 #### Andrew G. Brown
  - TODO
 ]
----
-
-# {aqp} Basics: soil data
-
-
-```r
-library(aqp)
-data(sp4, package = "aqp")
-head(sp4)
-```
-
-```
-##       id name top bottom   K   Mg  Ca CEC_7 ex_Ca_to_Mg sand silt clay   CF
-## 1 colusa    A   0      3 0.3 25.7 9.0  23.0        0.35   46   33   21 0.12
-## 2 colusa  ABt   3      8 0.2 23.7 5.6  21.4        0.23   42   31   27 0.27
-## 3 colusa  Bt1   8     30 0.1 23.2 1.9  23.7        0.08   40   28   32 0.27
-## 4 colusa  Bt2  30     42 0.1 44.3 0.3  43.0        0.01   27   18   55 0.16
-## 5  glenn    A   0      9 0.2 21.9 4.4  18.8        0.20   54   20   25 0.55
-## 6  glenn   Bt   9     34 0.3 18.9 4.5  27.5        0.20   49   18   34 0.84
-```
----
-
-# {aqp} Basics: the _SoilProfileCollection_
-
-
-```r
-# promote data.frame/tibble/data.table to SoilProfileCollection
-*depths(sp4) &lt;- id ~ top + bottom
-
-# inspect "site" data
-head(site(sp4))
-```
-
-```
-##          id
-## 1    colusa
-## 2     glenn
-## 3     kings
-## 4  mariposa
-## 5 mendocino
-## 6      napa
-```
-
-```r
-# inspect "horizon" data
-head(horizons(sp4))
-```
-
-```
-##       id name top bottom   K   Mg  Ca CEC_7 ex_Ca_to_Mg sand silt clay   CF
-## 1 colusa    A   0      3 0.3 25.7 9.0  23.0        0.35   46   33   21 0.12
-## 2 colusa  ABt   3      8 0.2 23.7 5.6  21.4        0.23   42   31   27 0.27
-## 3 colusa  Bt1   8     30 0.1 23.2 1.9  23.7        0.08   40   28   32 0.27
-## 4 colusa  Bt2  30     42 0.1 44.3 0.3  43.0        0.01   27   18   55 0.16
-## 5  glenn    A   0      9 0.2 21.9 4.4  18.8        0.20   54   20   25 0.55
-## 6  glenn   Bt   9     34 0.3 18.9 4.5  27.5        0.20   49   18   34 0.84
-##   hzID
-## 1    1
-## 2    2
-## 3    3
-## 4    4
-## 5    5
-## 6    6
-```
-
-??? You can promote data.frame objects, to SoilProfileCollection objects. You begin with the "horizon" or layer data -- where unique layers are distinguished by the combination of site `id` and `top` depth. A brand new feature is the ability to use data.table and tibble data.frame subclasses inside SoilProfileCollection objects. This allows for faster calculations and joins {data.table} as well as enhanced compatibility with {tidyverse} workflows.
-
----
-
-# {aqp} Basics: plot methods
-
-```r
-plot(sp4, color = 'clay', cex.names = 1)
-```
-
-&lt;img src="Expanding-the-Toolkit-for-Soil-Scientists_files/figure-html/unnamed-chunk-3-1.png" width="720" /&gt;
-
-??? A major feature of a SoilProfileCollection is the plot methods. This provides for a rapid way to visualize geometric and tabular data from a set of soil profiles. Here, we are viewing all profiles in the `sp4` SoilProfileCollection object, with the thematic attribute "clay" (% clay content). The default arguments of `plot` often need to be adjusted for figures containing very small or very large numbers of profiles. For better readability, we use a larger-than-default character expansion value for the labels.
----
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
