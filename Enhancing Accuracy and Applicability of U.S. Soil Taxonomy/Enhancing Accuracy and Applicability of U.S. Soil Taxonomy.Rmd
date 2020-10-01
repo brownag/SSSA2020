@@ -1,18 +1,44 @@
+
+---
+output: 
+  xaringan::moon_reader:
+    css: [styles.css, default, hygge, metropolis-fonts]
+    seal: false
+    nature:
+      slideNumberFormat: "%current%"   
+      highlightStyle: github
+      highlightLines: true
+---
+<!--
 ---
 title: "Enhancing Accuracy and Applicability of U.S. Soil Taxonomy"
 author: "Andrew G. Brown & Dylan E. Beaudette"
 date: "SSSA -- Future of Pedology - November 2020"
-output: xaringan::moon_reader
 ---
-<!--
 Abstract:
 
 Pedologic knowledge has been hard won through the work of countless soil and earth scientists. This knowledge been distilled into standards and classification systems that allow us to consistently reason over diverse and complex natural systems. As new needs arise and knowledge is gained, criteria for classification and separation of concepts are refined and historic criteria are called in to question. Determining potential impacts of new or altered criteria throughout a classification system is complicated and time-consuming – perfect for the application of computer-aided reasoning. However, soils data and soil classification systems, particularly U.S. Soil Taxonomy, have nuances that require careful consideration.
 
 Changes to criteria that affect fundamental diagnostic features in Soil Taxonomy can have large influences on classification and, by association, grouping of soil concepts that are similar for use and management in soil surveys. We have developed data structures and computer code in the R package “aqp," or Algorithms for Quantitative Pedology, that are capable of reasoning over soil profile data and criteria. This implementation of concepts has offered novel opportunities for data-driven analyses relating properties (predicted or observed) to taxonomic or interpretive groups. Routines for programmatic identification of soil features such as argillic horizons and mollic epipedons are a fundamental steps towards automated classification using U.S. Soil Taxonomy.
-
 -->
+class: titleSlide
+<br><br><br>
+.pull-left[
+  ## Enhancing Accuracy and Applicability of U.S. Soil Taxonomy
+  <br><br><br>
+  #### SSSA -- Future of Pedology Symposium
+]
 
+.right[.large[<br><br><br><br><br><br><br><br>
+Andrew G. Brown<br>
+<a href="mailto:andrew.g.brown@usda.gov">`r icon::fa("mail-bulk")`&nbsp;andrew.g.brown@usda.gov</a>
+<br><br>
+Dr. Dylan E. Beaudette</b><br>
+<a href="mailto:dylan.beaudette@usda.gov">`r icon::fa("mail-bulk")`&nbsp;dylan.beaudette@usda.gov</a><br><br>
+
+]]
+
+---
 # Who am I?
 
 .pull-left[
@@ -42,6 +68,7 @@ Changes to criteria that affect fundamental diagnostic features in Soil Taxonomy
 ---
 
 # The Keys are like a sieve
+![](https://raw.githubusercontent.com/ncss-tech/aqp/master/misc/hexstickers/aqp_sticker_v2.png)
 
 ---
 
@@ -53,7 +80,7 @@ Changes to criteria that affect fundamental diagnostic features in Soil Taxonomy
 
 ---
 
-# Carbon, the Mollic Epipedon
+# Carbon & the Mollic Epipedon
 
 --- 
 
@@ -61,7 +88,7 @@ Changes to criteria that affect fundamental diagnostic features in Soil Taxonomy
 
 ---
 
-# Clay, the Argillic Horizon
+# Clay & the Argillic Horizon
 
 ---
 
