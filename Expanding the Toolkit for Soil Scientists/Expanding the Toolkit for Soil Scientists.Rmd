@@ -120,7 +120,7 @@ data(sp4, package = "aqp") # see ?sp4 for metadata
 --
 
 ```{r}
-sp4
+head(sp4, n = 9)
 ```
 
 ```{r echo=FALSE}
@@ -223,6 +223,7 @@ horizons(sp4) # "horizon" data
 The site and horizons methods provide access to the S4 site and horizon slots within the SoilProfileCollection object.
 
 A major feature of aqp and the SoilProfileCollection are the plot methods. These provide a rapid way to visualize geometric and tabular data from a set of soil profiles. Here, we are viewing all profiles in the `sp4` SoilProfileCollection object, with the thematic attribute "clay" (% clay content). The default arguments of `plot` often need to be adjusted for figures containing very small or very large numbers of profiles. For better readability, we use a larger-than-default character expansion value for the labels.
+
 ---
 class: bodySlide
 <br>
@@ -403,16 +404,15 @@ class: bodySlide
 
 If you need to operate on other types of (more complex) grouping, splitting into `list` is a good option.
 
-```{r}
+```{r, eval=FALSE}
 a.list <- split(sp4, f = idname(sp4))
 ```
-
---
 
 ```{r, eval=FALSE}
 str(a.list, max.level = 1)
 ```
 
+--
 
 ```{r}
 a.list[[1]]
@@ -513,7 +513,7 @@ table(horizons(sp4)$hz_grp, useNA = "ifany")
 class: bodySlide
 <br>
 ## {aqp} S4 methods (left joins)
-#### `horizons<-`
+### `horizons<-`
 
 ```{r}
 horizons(sp4) <- data.frame(id = c("mariposa","mendocino"), #<<
