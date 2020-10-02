@@ -3,6 +3,7 @@
   <head>
     <title>Expanding-the-Toolkit-for-Soil-Scientists.utf8</title>
     <meta charset="utf-8" />
+    <script src="Expanding-the-Toolkit-for-Soil-Scientists_files/header-attrs-2.4/header-attrs.js"></script>
     <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/hygge.css" rel="stylesheet" />
     <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
@@ -124,41 +125,20 @@ data(sp4, package = "aqp") # see ?sp4 for metadata
 
 
 ```r
-sp4
+head(sp4, n = 9)
 ```
 
 ```
-##                id name top bottom   K   Mg   Ca CEC_7 ex_Ca_to_Mg sand silt clay   CF
-## 1          colusa    A   0      3 0.3 25.7  9.0  23.0        0.35   46   33   21 0.12
-## 2          colusa  ABt   3      8 0.2 23.7  5.6  21.4        0.23   42   31   27 0.27
-## 3          colusa  Bt1   8     30 0.1 23.2  1.9  23.7        0.08   40   28   32 0.27
-## 4          colusa  Bt2  30     42 0.1 44.3  0.3  43.0        0.01   27   18   55 0.16
-## 5           glenn    A   0      9 0.2 21.9  4.4  18.8        0.20   54   20   25 0.55
-## 6           glenn   Bt   9     34 0.3 18.9  4.5  27.5        0.20   49   18   34 0.84
-## 7           kings    A   0      4 0.2 12.1  1.4  23.7        0.58   43   55    3 0.50
-## 8           kings  Bt1   4     13 0.6 12.1  7.0  18.0        0.51   36   49   15 0.75
-## 9           kings  Bt2  13     40 0.8 17.7  4.4  20.0        0.25   27   45   27 0.67
-## 10           napa    A   0      6 0.4 16.4 24.1  31.1        1.47   43   42   15 0.02
-## 11           napa   Bt   6     20 0.1 16.2 21.5  27.9        1.32   54   29   17 0.07
-## 12     san benito    A   0      8  NA  3.0  0.7   3.1        0.24   80    8   12 0.43
-## 13     san benito   Bt   8     20 0.0  0.1  5.6   5.6        0.11   74    7   19 0.60
-## 14         shasta    A   0      3 0.3  9.7  3.5  13.2        0.36   37   49   14 0.78
-## 15         shasta   Bt   3     40 0.2 10.1  2.0  12.2        0.20   39   46   14 0.88
-## 16         tehama    A   0      3 0.4 12.4 16.3  40.2        1.31   57   19   24 0.43
-## 17         tehama  Bt1   3      7 0.5 20.2 16.5  32.7        0.82   55   20   25 0.10
-## 18         tehama  Bt2   7     16 0.2 27.7 13.7  30.0        0.50   51   17   32 0.34
-## 19       mariposa    A   0      3 0.6 28.3  5.8  29.3        0.20   42   26   32 0.25
-## 20       mariposa  Bt1   3     14 0.4 33.7  6.2  27.9        0.18   41   34   25 0.38
-## 21       mariposa  Bt2  14     34 0.3 44.3  6.2  34.1        0.14   36   33   31 0.71
-## 22       mariposa  Bt3  34     49 0.1 78.2  4.4  43.6        0.06   36   31   33 0.67
-## 23      mendocino    A   0      2 0.5 12.8  2.2  19.3        0.18   57   30   13 0.16
-## 24      mendocino  Bt1   2      8 0.2 27.1  3.4  19.8        0.13   51   28   21 0.14
-## 25      mendocino  Bt2   8     30 0.2 30.5  3.7  22.9        0.12   51   26   23 0.80
-## 26 shasta-trinity   A1   0      2 0.2 18.8  6.6  23.0        0.35   34   44   22 0.17
-## 27 shasta-trinity   A2   2      5 0.2 25.5  4.1  21.5        0.16   33   42   25 0.13
-## 28 shasta-trinity   AB   5     12 0.3 29.3  3.5  29.6        0.12   24   36   40 0.09
-## 29 shasta-trinity  Bt1  12     23 0.2 30.3  1.5  26.5        0.05   20   29   51 0.05
-## 30 shasta-trinity  Bt2  23     40 0.1 64.9  0.8  48.7        0.01   11   22   67 0.05
+##       id name top bottom   K   Mg  Ca CEC_7 ex_Ca_to_Mg sand silt clay   CF
+## 1 colusa    A   0      3 0.3 25.7 9.0  23.0        0.35   46   33   21 0.12
+## 2 colusa  ABt   3      8 0.2 23.7 5.6  21.4        0.23   42   31   27 0.27
+## 3 colusa  Bt1   8     30 0.1 23.2 1.9  23.7        0.08   40   28   32 0.27
+## 4 colusa  Bt2  30     42 0.1 44.3 0.3  43.0        0.01   27   18   55 0.16
+## 5  glenn    A   0      9 0.2 21.9 4.4  18.8        0.20   54   20   25 0.55
+## 6  glenn   Bt   9     34 0.3 18.9 4.5  27.5        0.20   49   18   34 0.84
+## 7  kings    A   0      4 0.2 12.1 1.4  23.7        0.58   43   55    3 0.50
+## 8  kings  Bt1   4     13 0.6 12.1 7.0  18.0        0.51   36   49   15 0.75
+## 9  kings  Bt2  13     40 0.8 17.7 4.4  20.0        0.25   27   45   27 0.67
 ```
 
 
@@ -251,8 +231,8 @@ profile_id(sp4) # view profile IDs
 ```
 
 ```
-##  [1] "colusa"         "glenn"          "kings"          "mariposa"       "mendocino"      "napa"          
-##  [7] "san benito"     "shasta"         "shasta-trinity" "tehama"
+##  [1] "colusa"         "glenn"          "kings"          "mariposa"       "mendocino"      "napa"           "san benito"    
+##  [8] "shasta"         "shasta-trinity" "tehama"
 ```
 
 ???
@@ -331,7 +311,7 @@ horizons(sp4) # "horizon" data
 ##  8 kings    Bt1       4     13   0.6  12.1   7    18      36    49    15  0.75 8    
 ##  9 kings    Bt2      13     40   0.8  17.7   4.4  20      27    45    27  0.67 9    
 ## 10 mariposa A         0      3   0.6  28.3   5.8  29.3    42    26    32  0.25 10   
-## # ... with 20 more rows
+## # … with 20 more rows
 ```
 
 ???
@@ -339,6 +319,7 @@ horizons(sp4) # "horizon" data
 The site and horizons methods provide access to the S4 site and horizon slots within the SoilProfileCollection object.
 
 A major feature of aqp and the SoilProfileCollection are the plot methods. These provide a rapid way to visualize geometric and tabular data from a set of soil profiles. Here, we are viewing all profiles in the `sp4` SoilProfileCollection object, with the thematic attribute "clay" (% clay content). The default arguments of `plot` often need to be adjusted for figures containing very small or very large numbers of profiles. For better readability, we use a larger-than-default character expansion value for the labels.
+
 ---
 class: bodySlide
 &lt;br&gt;
@@ -697,13 +678,12 @@ If you need to operate on other types of (more complex) grouping, splitting into
 a.list &lt;- split(sp4, f = idname(sp4))
 ```
 
---
-
 
 ```r
 str(a.list, max.level = 1)
 ```
 
+--
 
 
 ```r
@@ -894,7 +874,7 @@ horizons(sp4)[,c(idname(sp4),"hz_grp")]
 ##  8 kings    &lt;NA&gt;  
 ##  9 kings    &lt;NA&gt;  
 ## 10 mariposa group 
-## # ... with 20 more rows
+## # … with 20 more rows
 ```
 
 
@@ -912,7 +892,7 @@ table(horizons(sp4)$hz_grp, useNA = "ifany")
 class: bodySlide
 &lt;br&gt;
 ## {aqp} S4 methods (left joins)
-#### `horizons&lt;-`
+### `horizons&lt;-`
 
 
 ```r
