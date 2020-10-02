@@ -75,7 +75,7 @@ Project Homepage:
 ---
 class: bodySlide
 <br>
-## {aqp} soil data inputs
+## {soilDB} soil data inputs
 
 The {soilDB} R package provides several handy ways to import soil data. {soilDB} uses {aqp} for the _SoilProfileCollection_ object.
 

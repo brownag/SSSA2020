@@ -1,4 +1,3 @@
-
 ---
 output: 
   xaringan::moon_reader:
@@ -9,18 +8,6 @@ output:
       highlightStyle: github
       highlightLines: true
 ---
-<!--
----
-title: "Enhancing Accuracy and Applicability of U.S. Soil Taxonomy"
-author: "Andrew G. Brown & Dylan E. Beaudette"
-date: "SSSA -- Future of Pedology - November 2020"
----
-Abstract:
-
-Pedologic knowledge has been hard won through the work of countless soil and earth scientists. This knowledge been distilled into standards and classification systems that allow us to consistently reason over diverse and complex natural systems. As new needs arise and knowledge is gained, criteria for classification and separation of concepts are refined and historic criteria are called in to question. Determining potential impacts of new or altered criteria throughout a classification system is complicated and time-consuming – perfect for the application of computer-aided reasoning. However, soils data and soil classification systems, particularly U.S. Soil Taxonomy, have nuances that require careful consideration.
-
-Changes to criteria that affect fundamental diagnostic features in Soil Taxonomy can have large influences on classification and, by association, grouping of soil concepts that are similar for use and management in soil surveys. We have developed data structures and computer code in the R package “aqp," or Algorithms for Quantitative Pedology, that are capable of reasoning over soil profile data and criteria. This implementation of concepts has offered novel opportunities for data-driven analyses relating properties (predicted or observed) to taxonomic or interpretive groups. Routines for programmatic identification of soil features such as argillic horizons and mollic epipedons are a fundamental steps towards automated classification using U.S. Soil Taxonomy.
--->
 class: titleSlide
 <br><br><br>
 .pull-left[
@@ -38,17 +25,32 @@ Dr. Dylan E. Beaudette</b><br>
 
 ]]
 
+<!--
+title: "Enhancing Accuracy and Applicability of U.S. Soil Taxonomy"
+author: "Andrew G. Brown & Dylan E. Beaudette"
+date: "SSSA -- Future of Pedology - November 2020"
+
+Abstract:
+
+Pedologic knowledge has been hard won through the work of countless soil and earth scientists. This knowledge been distilled into standards and classification systems that allow us to consistently reason over diverse and complex natural systems. As new needs arise and knowledge is gained, criteria for classification and separation of concepts are refined and historic criteria are called in to question. Determining potential impacts of new or altered criteria throughout a classification system is complicated and time-consuming – perfect for the application of computer-aided reasoning. However, soils data and soil classification systems, particularly U.S. Soil Taxonomy, have nuances that require careful consideration.
+
+Changes to criteria that affect fundamental diagnostic features in Soil Taxonomy can have large influences on classification and, by association, grouping of soil concepts that are similar for use and management in soil surveys. We have developed data structures and computer code in the R package “aqp," or Algorithms for Quantitative Pedology, that are capable of reasoning over soil profile data and criteria. This implementation of concepts has offered novel opportunities for data-driven analyses relating properties (predicted or observed) to taxonomic or interpretive groups. Routines for programmatic identification of soil features such as argillic horizons and mollic epipedons are a fundamental steps towards automated classification using U.S. Soil Taxonomy.
+-->
+
+
 ---
+class: bodySlide
+<br>
 # Who am I?
 
-.pull-left[
+.left-column[
 ![](https://github.com/brownag.png)
 ![](https://raw.githubusercontent.com/ncss-tech/aqp/master/misc/hexstickers/aqp_sticker_v2.png)
 ]
 
-.pull-right[
+.right-column[
 #### Andrew G. Brown
- - Soil Scientist in _Sonora, CA_ MLRA office, Southwest Soil Survey Region
+ - Soil Scientist in _Sonora, CA_, Southwest Soil Survey Region
  
  - Area of responsibility: Sierra Nevada Foothills & Mountains (MLRAs 18 & 22A)
  
@@ -58,41 +60,68 @@ Dr. Dylan E. Beaudette</b><br>
 ]
 
 ---
+class: bodySlide
+<br>
 
-# U.S. Soil Taxonomy is a language spoken throughout the world
-
----
-
-# The 7th Approximation to Today -- a theoretical framework
+## The 7th Approximation to Today -- a theoretical framework
 
 ---
+class: bodySlide
+<br>
 
-# The Keys are like a sieve
-![](https://raw.githubusercontent.com/ncss-tech/aqp/master/misc/hexstickers/aqp_sticker_v2.png)
+## The _Keys_ are like a set of sieves
+
+.pull-right[
+
+![](img/sieve.jpg)
+]
+---
+class: bodySlide
+<br>
+
+## Soil v.s. Non-soil & Soil Depth
 
 ---
+class: bodySlide
+<br>
 
-# Soil versus Non-soil and Soil Depth
-
----
-
-# Diagnostic Features and Properties are the heart of Soil Taxonomy
-
----
-
-# Carbon & the Mollic Epipedon
-
---- 
-
-# Soil Health and Surface Characteristics
+## Properties & Diagnostic Features 
+###(<3 of Soil Taxonomy)
 
 ---
+class: bodySlide
+<br>
 
-# Clay & the Argillic Horizon
+## The Soil Surface & Soil Health
 
 ---
+class: bodySlide
+<br>
 
-# Soil Age and Time as A Soil Forming Factor
+## Carbon & the Mollic Epipedon
 
+---
+class: bodySlide
+<br>
+
+## Clay & the Argillic Horizon
+ 
+---
+class: bodySlide
+<br>
+
+## Soil Age & Time 
+
+---
+class: bodySlide
+<br>
+
+## Soil Taxonomy in the digital age
+
+---
+class: bodySlide
+<br>
+
+## Soil Mapping in the digital age
 
 

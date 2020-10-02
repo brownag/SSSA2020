@@ -1,42 +1,61 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Enhancing Accuracy and Applicability of U.S. Soil Taxonomy</title>
+    <title>Enhancing-Accuracy-and-Applicability-of-U.S.-Soil-Taxonomy.utf8</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Andrew G. Brown &amp; Dylan E. Beaudette" />
-    <script src="Enhancing-Accuracy-and-Applicability-of-U.S.-Soil-Taxonomy_files/header-attrs-2.3/header-attrs.js"></script>
+    <script src="Enhancing-Accuracy-and-Applicability-of-U.S.-Soil-Taxonomy_files/header-attrs-2.4/header-attrs.js"></script>
     <link href="Enhancing-Accuracy-and-Applicability-of-U.S.-Soil-Taxonomy_files/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="Enhancing-Accuracy-and-Applicability-of-U.S.-Soil-Taxonomy_files/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <link href="Enhancing-Accuracy-and-Applicability-of-U.S.-Soil-Taxonomy_files/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link href="Enhancing-Accuracy-and-Applicability-of-U.S.-Soil-Taxonomy_files/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <link href="Enhancing-Accuracy-and-Applicability-of-U.S.-Soil-Taxonomy_files/font-awesome-5.3.1/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
-class: center, middle, inverse, title-slide
 
-# Enhancing Accuracy and Applicability of U.S. Soil Taxonomy
-### Andrew G. Brown &amp; Dylan E. Beaudette
-### SSSA – Future of Pedology - November 2020
+class: titleSlide
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+.pull-left[
+  ## Enhancing Accuracy and Applicability of U.S. Soil Taxonomy
+  &lt;br&gt;&lt;br&gt;&lt;br&gt;
+  #### SSSA -- Future of Pedology Symposium
+]
 
----
+.right[.large[&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+Andrew G. Brown&lt;br&gt;
+&lt;a href="mailto:andrew.g.brown@usda.gov"&gt;<i class="fas  fa-mail-bulk "></i>&amp;nbsp;andrew.g.brown@usda.gov&lt;/a&gt;
+&lt;br&gt;&lt;br&gt;
+Dr. Dylan E. Beaudette&lt;/b&gt;&lt;br&gt;
+&lt;a href="mailto:dylan.beaudette@usda.gov"&gt;<i class="fas  fa-mail-bulk "></i>&amp;nbsp;dylan.beaudette@usda.gov&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+
+]]
 
 &lt;!--
+title: "Enhancing Accuracy and Applicability of U.S. Soil Taxonomy"
+author: "Andrew G. Brown &amp; Dylan E. Beaudette"
+date: "SSSA -- Future of Pedology - November 2020"
+
 Abstract:
 
 Pedologic knowledge has been hard won through the work of countless soil and earth scientists. This knowledge been distilled into standards and classification systems that allow us to consistently reason over diverse and complex natural systems. As new needs arise and knowledge is gained, criteria for classification and separation of concepts are refined and historic criteria are called in to question. Determining potential impacts of new or altered criteria throughout a classification system is complicated and time-consuming – perfect for the application of computer-aided reasoning. However, soils data and soil classification systems, particularly U.S. Soil Taxonomy, have nuances that require careful consideration.
 
 Changes to criteria that affect fundamental diagnostic features in Soil Taxonomy can have large influences on classification and, by association, grouping of soil concepts that are similar for use and management in soil surveys. We have developed data structures and computer code in the R package “aqp," or Algorithms for Quantitative Pedology, that are capable of reasoning over soil profile data and criteria. This implementation of concepts has offered novel opportunities for data-driven analyses relating properties (predicted or observed) to taxonomic or interpretive groups. Routines for programmatic identification of soil features such as argillic horizons and mollic epipedons are a fundamental steps towards automated classification using U.S. Soil Taxonomy.
-
 --&gt;
 
+
+---
+class: bodySlide
+&lt;br&gt;
 # Who am I?
 
-.pull-left[
+.left-column[
 ![](https://github.com/brownag.png)
 ![](https://raw.githubusercontent.com/ncss-tech/aqp/master/misc/hexstickers/aqp_sticker_v2.png)
 ]
 
-.pull-right[
+.right-column[
 #### Andrew G. Brown
- - Soil Scientist in _Sonora, CA_ MLRA office, Southwest Soil Survey Region
+ - Soil Scientist in _Sonora, CA_, Southwest Soil Survey Region
  
  - Area of responsibility: Sierra Nevada Foothills &amp; Mountains (MLRAs 18 &amp; 22A)
  
@@ -46,48 +65,79 @@ Changes to criteria that affect fundamental diagnostic features in Soil Taxonomy
 ]
 
 ---
+class: bodySlide
+&lt;br&gt;
 
-# U.S. Soil Taxonomy is a language spoken throughout the world
-
----
-
-# The 7th Approximation to Today -- a theoretical framework
+## The 7th Approximation to Today -- a theoretical framework
 
 ---
+class: bodySlide
+&lt;br&gt;
 
-# The Keys are like a sieve
-![](https://raw.githubusercontent.com/ncss-tech/aqp/master/misc/hexstickers/aqp_sticker_v2.png)
+## The _Keys_ are like a set of sieves
+
+.pull-right[
+
+![](img/sieve.jpg)
+]
+---
+class: bodySlide
+&lt;br&gt;
+
+## Soil v.s. Non-soil &amp; Soil Depth
 
 ---
+class: bodySlide
+&lt;br&gt;
 
-# Soil versus Non-soil and Soil Depth
-
----
-
-# Diagnostic Features and Properties are the heart of Soil Taxonomy
-
----
-
-# Carbon &amp; the Mollic Epipedon
-
---- 
-
-# Soil Health and Surface Characteristics
+## Properties &amp; Diagnostic Features 
+###(&lt;3 of Soil Taxonomy)
 
 ---
+class: bodySlide
+&lt;br&gt;
 
-# Clay &amp; the Argillic Horizon
+## The Soil Surface &amp; Soil Health
 
 ---
+class: bodySlide
+&lt;br&gt;
 
-# Soil Age and Time as A Soil Forming Factor
+## Carbon &amp; the Mollic Epipedon
 
+---
+class: bodySlide
+&lt;br&gt;
+
+## Clay &amp; the Argillic Horizon
+ 
+---
+class: bodySlide
+&lt;br&gt;
+
+## Soil Age &amp; Time 
+
+---
+class: bodySlide
+&lt;br&gt;
+
+## Soil Taxonomy in the digital age
+
+---
+class: bodySlide
+&lt;br&gt;
+
+## Soil Mapping in the digital age
 
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create();
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true
+});
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
@@ -152,7 +202,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       links[i].target = '_blank';
     }
   }
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 slideshow._releaseMath = function(el) {
