@@ -1,0 +1,138 @@
+---
+output: 
+  xaringan::moon_reader:
+    css: [styles.css, default, hygge, metropolis-fonts]
+    seal: false
+    nature:
+      slideNumberFormat: "%current%"   
+      highlightStyle: github
+      highlightLines: true
+---
+class: titleSlide
+<br><br><br>
+.pull-left[
+  ## [TITLE]
+  ### [SUBTITLE]
+  <br><br><br>
+  #### [EVENT, DATE, ETC.]
+]
+
+.right[.large[<br><br><br><br><br><br><br><br>
+              Susan B. Author <br>
+              <a href="mailto:[AUTHOREMAIL]"><i class="fas  fa-mail-bulk "></i>[AUTHOREMAIL]</a>
+              <br><br>
+
+<!--<a href="http://github.com/brownag"><i class="fab  fa-github "></i>brownag</a><br><a href="http://twitter.com/humus_rocks"><i class="fab  fa-twitter "></i>@humus_rocks</a>-->
+]]
+
+---
+  class: bodySlide
+<br>
+## This is a title
+.left-column[
+  [![](https://raw.githubusercontent.com/ncss-tech/aqp/master/misc/hexstickers/aqp_sticker_v2.png)](http://ncss-tech.github.io/aqp/)
+
+  <br>
+
+  [![](https://www.r-project.org/logo/Rlogo.png)](https://www.r-project.org/)
+]
+
+.right-column[
+
+  Introduce your presentation here. Put logos or images that scale down in the narrow left sidebar.
+
+  - Item 1
+
+  - Item 2
+
+]
+
+---
+
+class: bodySlide
+
+<br>
+
+## This is a title
+
+.pull-left[
+
+
+```r
+#
+# code on the left
+#
+```
+
+]
+
+.pull-right[
+
+1. Comments on the right
+  - sub comment
+  - sub comment
+
+2. Comment #2
+  - sub comment
+  - sub comment
+]
+
+
+---
+
+class: bodySlide
+
+<br>
+
+## This is a title
+
+- Completely
+
+- Ordinary
+
+- Slide
+
+---
+
+class: bodySlide
+
+<br>
+
+## This is a title
+
+.pull-left[
+  ```{r ref.label = 'plot-ten', echo = FALSE}
+  ```
+]
+
+.pull-right[
+  <br><br>
+  ```{r plot-ten, fig.show = 'hide'}
+  # code on the right
+
+  plot(1:10, 1:10, cex = 2)
+  
+  # results on the left
+  ```
+]
+
+---
+class: bodySlide
+<br>
+## Thank you!
+.left-column[
+  <br>
+  ![](path/to/your/picture/here.png)
+]
+
+.right-column[
+  #### Susan B. Author
+
+  <a href="mailto:[AUTHOREMAIL]S"><i class="fas  fa-mail-bulk "></i>&amp;nbsp;[AUTHOREMAIL]</a><br>
+
+  <!--<a href="http://github.com/brownag"><i class="fab  fa-github "></i>&amp;nbsp;brownag</a><br>-->
+  <!--<a href="http://twitter.com/humus_rocks"><i class="fab  fa-twitter "></i>&amp;nbsp;@humus_rocks</a>-->
+
+]
+
+_USDA is an equal opportunity provider and employer._
