@@ -231,17 +231,17 @@ The site and horizons methods provide access to the S4 site and horizon slots wi
 A major feature of aqp and the SoilProfileCollection are the plot methods. These provide a rapid way to visualize geometric and tabular data from a set of soil profiles. Here, we are viewing all profiles in the `sp4` SoilProfileCollection object, with the thematic attribute "clay" (% clay content). The default arguments of `plot` often need to be adjusted for figures containing very small or very large numbers of profiles. For better readability, we use a larger-than-default character expansion value for the labels.
 
 ---
-class: bodySlide
+class: bodySlideLite
 <br>
 ## {`aqp`} Methods (extract)
 
 ### `[i,]`
-```{r}
+```{r, highlight.output=c(1,5,16)}
 sp4[1:2,] # i-index: first two profiles 
 ```
 
 ---
-class: bodySlide
+class: bodySlideLite
 <br>
 ## {`aqp`} Methods (extract)
 
@@ -251,7 +251,7 @@ sp4[1:2,] # i-index: first two profiles
 ```
 
 ### `[,j]`
-```{r}
+```{r, highlight.output=c(1,5,16)}
 sp4[,1:2] # j-index: first two horizons (of each profile!)
 ```
 
@@ -308,7 +308,7 @@ You can use the dollar sign method along with either site or horizons method to 
 Only profile ID is shared between site and horizon tables, so when removing a column, there is no need to specify site or horizons.
 
 ---
-class: bodySlide
+class: bodySlideLite
 <br>
 ## {`aqp`} Methods (subset)
 
@@ -328,7 +328,7 @@ sub.sp4 <- filter(sp4, id %in% c("colusa","mariposa","shasta")) #<<
 
 --
 
-```{r}
+```{r, highlight.output=c(1,5,16)}
 sub.sp4
 ```
 
@@ -337,18 +337,52 @@ sub.sp4
 An alias for `subset` is `filter` and other new {dplyr}-like verbs in {`aqp`} use {rlang} for non-standard evaluation. This results in less typing and easier to read code!
 
 ---
-class: bodySlide
+class: bodySlideLite
 <br>
 ## {`aqp`} Methods (subset)
 
-```{r}
+```{r, highlight.output=c(1,5,17)}
 # horizon properties (two simultaneous logical expressions)
 sub.sp4 <- subset(sp4, clay > 30, ex_Ca_to_Mg < 0.05) #<<
 sub.sp4
 ```
+
 ???
 
 You can mix site and horizon level logic. Horizon-level filtering uses `ANY` not `ALL` logic. Use the `greedy` argument to toggle the _union_ versus _intersection_ of site/horizon matches.
+
+---
+class: bodySlideLite
+<br>
+## {`aqp`} Methods (split SPC -> list)
+
+If you need to operate on groups, splitting into `list` is a good option.
+
+```{r}
+a.list <- split(sp4, f = idname(sp4))
+```  
+
+```{r}
+str(a.list, max.level = 1)
+```
+
+---
+class: bodySlideLite
+## {`aqp`} Methods (split SPC -> list)
+
+If you need to operate on groups, splitting into `list` is a good option.
+
+```{r, eval=FALSE}
+a.list <- split(sp4, f = idname(sp4))
+```
+
+```{r, eval=FALSE}
+str(a.list, max.level = 1)
+```
+
+```{r, highlight.output=c(1,5,14)}
+a.list[[1]]
+```
 
 ---
 class: bodySlide
@@ -362,20 +396,23 @@ sub.sp4$soil_depth
 
 --
 
-```{r}
+```{r, highlight.output=c(2)}
 profileApply(sp4, frameify = TRUE, 
     function(p) {
       data.frame(id = profile_id(p), 
                  soil_depth = estimateSoilDepth(p))
     })
 ```
+???
 
----
+`profileApply` is the {aqp} analogue of the base R `*apply` functions, only it iterates over profiles rather than e.g. list elements for `lapply`.
+
+--- 
 class: bodySlide
 <br>
 ## {`aqp`} Methods (iteration)
 
-With recent internal optimizations, `profileApply` now scales to larger collections.
+With recent internal optimizations, `profileApply` scales to larger collections.
 
 ![](img/chunkApply.png)
 
@@ -383,57 +420,25 @@ With recent internal optimizations, `profileApply` now scales to larger collecti
 
 "Use `profileApply` to apply a function to each profile in a _SoilProfileCollection_, like base **R** `*apply`. You can use the `simplify` and `frameify` arguments to change the result object type."
 
----
-class: bodySlideLite
-<br>
-## {`aqp`} Methods (split; SPC -> list)
-
-If you need to operate on other groupings, splitting into `list` is a good option.
-
-```{r}
-a.list <- split(sp4, f = idname(sp4))
-```  
-
-```{r}
-str(a.list, max.level = 1)
-```
+`profileApply` is used internally by other methods like `glomApply` and `mutate_profile`
 
 ---
 class: bodySlide
 <br>
-## {`aqp`} Methods (split; SPC -> list)
-
-If you need to operate on other groupings, splitting into `list` is a good option.
-
-```{r, eval=FALSE}
-a.list <- split(sp4, f = idname(sp4))
-```
-
-```{r, eval=FALSE}
-str(a.list, max.level = 1)
-```
-
-```{r}
-a.list[[1]]
-```
-
----
-class: bodySlide
-<br>
-## {`aqp`} Methods (combine; list -> SPC)
+## {`aqp`} Methods (`combine`; list -> SPC)
 
 Recombine list elements into "original" SoilProfileCollection with `combine`
-
+.left-code-slight[
 ```{r}
 sp4 <- combine(a.list)
 ```
 
 --
 
-```{r}
+```{r, highlight.output=c(1,5,17)}
 sp4
 ```
-
+]
 ---
 class: bodySlide
 <br>
@@ -539,11 +544,9 @@ table(h$hz_grp, useNA = "ifany")
 class: bodySlide
 <br>
 ## {`aqp`} Soil Color
-.center[####{`aqp`} has methods for soil data in<br>Munsell, sRGB and CIELAB color space.]
-
 .pull-left[
 ```{r plot-Tama, echo=FALSE, fig.width=10, fig.height=7}
-par(mar=c(3, 1, 0, 3))
+par(mar = c(3, 1, 0, 3))
 # library(soilDB)
 # tama <- fetchKSSL(series = "tama", 
 #                   returnMorphologicData = TRUE, 
@@ -565,6 +568,7 @@ groupedProfilePlot(tama2[11:14,], name.style = "left-center",
 ]
 
 .pull-right[
+.center[#### {`aqp`} has methods for soil data in<br>Munsell, sRGB and CIELAB.]
 `aggregateColor`,
 `colorContrast`,
 `colorQuantiles`,
@@ -705,3 +709,5 @@ McGahan, D.G., Southard, R.J, Claassen, V.P. 2009. Plant-Available Calcium Varie
 
 R Core Team. 2020. R: A language and environment for statistical computing. R Foundation for
 Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+
+Xie, Y. 2020. xaringan: Presentation Ninja. R package version 0.17.1. https://github.com/yihui/xaringan

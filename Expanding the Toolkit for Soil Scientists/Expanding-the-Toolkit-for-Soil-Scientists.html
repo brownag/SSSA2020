@@ -3,7 +3,6 @@
   <head>
     <title>Expanding-the-Toolkit-for-Soil-Scientists.utf8</title>
     <meta charset="utf-8" />
-    <script src="Expanding-the-Toolkit-for-Soil-Scientists_files/header-attrs-2.4/header-attrs.js"></script>
     <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/hygge.css" rel="stylesheet" />
     <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
@@ -126,11 +125,7 @@ data(sp4, package = "aqp") # see ?sp4 for metadata
 
 
 ```r
-<<<<<<< HEAD
 head(sp4, n = 8)
-=======
-head(sp4, n = 9)
->>>>>>> b0b921ab89206944ae906c3d2bf74ba427b79a4f
 ```
 
 ```
@@ -143,10 +138,6 @@ head(sp4, n = 9)
 ## 6  glenn   Bt   9     34 0.3 18.9 4.5  27.5        0.20   49   18   34 0.84
 ## 7  kings    A   0      4 0.2 12.1 1.4  23.7        0.58   43   55    3 0.50
 ## 8  kings  Bt1   4     13 0.6 12.1 7.0  18.0        0.51   36   49   15 0.75
-<<<<<<< HEAD
-=======
-## 9  kings  Bt2  13     40 0.8 17.7 4.4  20.0        0.25   27   45   27 0.67
->>>>>>> b0b921ab89206944ae906c3d2bf74ba427b79a4f
 ```
 
 
@@ -239,12 +230,7 @@ str(profile_id(sp4), vec.len = 3) # view first 3 profile IDs
 ```
 
 ```
-<<<<<<< HEAD
 ##  chr [1:10] "colusa" "glenn" "kings" ...
-=======
-##  [1] "colusa"         "glenn"          "kings"          "mariposa"       "mendocino"      "napa"           "san benito"    
-##  [8] "shasta"         "shasta-trinity" "tehama"
->>>>>>> b0b921ab89206944ae906c3d2bf74ba427b79a4f
 ```
 
 ???
@@ -323,7 +309,7 @@ horizons(sp4) # "horizon" data
 ##  8 kings    Bt1       4     13   0.6  12.1   7    18      36    49    15  0.75 8    
 ##  9 kings    Bt2      13     40   0.8  17.7   4.4  20      27    45    27  0.67 9    
 ## 10 mariposa A         0      3   0.6  28.3   5.8  29.3    42    26    32  0.25 10   
-## # … with 20 more rows
+## # ... with 20 more rows
 ```
 
 ???
@@ -334,7 +320,7 @@ The site and horizons methods provide access to the S4 site and horizon slots wi
 A major feature of aqp and the SoilProfileCollection are the plot methods. These provide a rapid way to visualize geometric and tabular data from a set of soil profiles. Here, we are viewing all profiles in the `sp4` SoilProfileCollection object, with the thematic attribute "clay" (% clay content). The default arguments of `plot` often need to be adjusted for figures containing very small or very large numbers of profiles. For better readability, we use a larger-than-default character expansion value for the labels.
 
 ---
-class: bodySlide
+class: bodySlideLite
 &lt;br&gt;
 ## {`aqp`} Methods (extract)
 
@@ -345,11 +331,11 @@ sp4[1:2,] # i-index: first two profiles
 ```
 
 ```
-## SoilProfileCollection with 2 profiles and 6 horizons
+*## SoilProfileCollection with 2 profiles and 6 horizons
 ## profile ID: id  |  horizon ID: hzID 
 ## Depth range: 34 - 42 cm
 ## 
-## ----- Horizons (6 / 6 rows  |  10 / 13 columns) -----
+*## ----- Horizons (6 / 6 rows  |  10 / 13 columns) -----
 ## # A tibble: 6 x 10
 ##   id     hzID    top bottom name      K    Mg    Ca CEC_7  sand
 ##   &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
@@ -360,7 +346,7 @@ sp4[1:2,] # i-index: first two profiles
 ## 5 glenn  5         0      9 A       0.2  21.9   4.4  18.8    54
 ## 6 glenn  6         9     34 Bt      0.3  18.9   4.5  27.5    49
 ## 
-## ----- Sites (2 / 2 rows  |  1 / 1 columns) -----
+*## ----- Sites (2 / 2 rows  |  1 / 1 columns) -----
 ## # A tibble: 2 x 1
 ##   id    
 ##   &lt;chr&gt; 
@@ -371,7 +357,7 @@ sp4[1:2,] # i-index: first two profiles
 ```
 
 ---
-class: bodySlide
+class: bodySlideLite
 &lt;br&gt;
 ## {`aqp`} Methods (extract)
 
@@ -388,11 +374,11 @@ sp4[,1:2] # j-index: first two horizons (of each profile!)
 ```
 
 ```
-## SoilProfileCollection with 10 profiles and 20 horizons
+*## SoilProfileCollection with 10 profiles and 20 horizons
 ## profile ID: id  |  horizon ID: hzID 
 ## Depth range: 5 - 40 cm
 ## 
-## ----- Horizons (6 / 20 rows  |  10 / 13 columns) -----
+*## ----- Horizons (6 / 20 rows  |  10 / 13 columns) -----
 ## # A tibble: 6 x 10
 ##   id     hzID    top bottom name      K    Mg    Ca CEC_7  sand
 ##   &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
@@ -403,7 +389,7 @@ sp4[,1:2] # j-index: first two horizons (of each profile!)
 ## 5 kings  7         0      4 A       0.2  12.1   1.4  23.7    43
 ## 6 kings  8         4     13 Bt1     0.6  12.1   7    18      36
 ## [... more horizons ...]
-## 
+*## 
 ## ----- Sites (6 / 10 rows  |  1 / 1 columns) -----
 ## # A tibble: 6 x 1
 ##   id       
@@ -485,7 +471,7 @@ You can use the dollar sign method along with either site or horizons method to 
 Only profile ID is shared between site and horizon tables, so when removing a column, there is no need to specify site or horizons.
 
 ---
-class: bodySlide
+class: bodySlideLite
 &lt;br&gt;
 ## {`aqp`} Methods (subset)
 
@@ -513,11 +499,11 @@ sub.sp4
 ```
 
 ```
-## SoilProfileCollection with 3 profiles and 10 horizons
+*## SoilProfileCollection with 3 profiles and 10 horizons
 ## profile ID: id  |  horizon ID: hzID 
 ## Depth range: 40 - 49 cm
 ## 
-## ----- Horizons (6 / 10 rows  |  10 / 15 columns) -----
+*## ----- Horizons (6 / 10 rows  |  10 / 15 columns) -----
 ## # A tibble: 6 x 10
 ##   id       hzID    top bottom name      K    Mg    Ca CEC_7  sand
 ##   &lt;chr&gt;    &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
@@ -528,7 +514,7 @@ sub.sp4
 ## 5 mariposa 10        0      3 A       0.6  28.3   5.8  29.3    42
 ## 6 mariposa 11        3     14 Bt1     0.4  33.7   6.2  27.9    41
 ## [... more horizons ...]
-## 
+*## 
 ## ----- Sites (3 / 3 rows  |  2 / 2 columns) -----
 ## # A tibble: 3 x 2
 ##   id       new_var
@@ -545,7 +531,7 @@ sub.sp4
 An alias for `subset` is `filter` and other new {dplyr}-like verbs in {`aqp`} use {rlang} for non-standard evaluation. This results in less typing and easier to read code!
 
 ---
-class: bodySlide
+class: bodySlideLite
 &lt;br&gt;
 ## {`aqp`} Methods (subset)
 
@@ -557,11 +543,11 @@ sub.sp4
 ```
 
 ```
-## SoilProfileCollection with 2 profiles and 9 horizons
+*## SoilProfileCollection with 2 profiles and 9 horizons
 ## profile ID: id  |  horizon ID: hzID 
 ## Depth range: 40 - 42 cm
 ## 
-## ----- Horizons (6 / 9 rows  |  10 / 15 columns) -----
+*## ----- Horizons (6 / 9 rows  |  10 / 15 columns) -----
 ## # A tibble: 6 x 10
 ##   id             hzID    top bottom name      K    Mg    Ca CEC_7  sand
 ##   &lt;chr&gt;          &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
@@ -573,7 +559,7 @@ sub.sp4
 ## 6 shasta-trinity 24        2      5 A2      0.2  25.5   4.1  21.5    33
 ## [... more horizons ...]
 ## 
-## ----- Sites (2 / 2 rows  |  2 / 2 columns) -----
+*## ----- Sites (2 / 2 rows  |  2 / 2 columns) -----
 ## # A tibble: 2 x 2
 ##   id             new_var
 ##   &lt;chr&gt;            &lt;dbl&gt;
@@ -582,9 +568,88 @@ sub.sp4
 ## 
 ## Spatial Data: [EMPTY]
 ```
+
 ???
 
 You can mix site and horizon level logic. Horizon-level filtering uses `ANY` not `ALL` logic. Use the `greedy` argument to toggle the _union_ versus _intersection_ of site/horizon matches.
+
+---
+class: bodySlideLite
+&lt;br&gt;
+## {`aqp`} Methods (split SPC -&gt; list)
+
+If you need to operate on groups, splitting into `list` is a good option.
+
+
+```r
+a.list &lt;- split(sp4, f = idname(sp4))
+```
+
+
+```r
+str(a.list, max.level = 1)
+```
+
+```
+## List of 10
+##  $ colusa        :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ glenn         :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ kings         :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ mariposa      :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ mendocino     :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ napa          :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ san benito    :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ shasta        :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ shasta-trinity:Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+##  $ tehama        :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
+```
+
+---
+class: bodySlideLite
+## {`aqp`} Methods (split SPC -&gt; list)
+
+If you need to operate on groups, splitting into `list` is a good option.
+
+
+```r
+a.list &lt;- split(sp4, f = idname(sp4))
+```
+
+
+```r
+str(a.list, max.level = 1)
+```
+
+
+```r
+a.list[[1]]
+```
+
+```
+*## SoilProfileCollection with 1 profiles and 4 horizons
+## profile ID: id  |  horizon ID: hzID 
+## Depth range: 42 - 42 cm
+## 
+*## ----- Horizons (4 / 4 rows  |  10 / 15 columns) -----
+## # A tibble: 4 x 10
+##   id     hzID    top bottom name      K    Mg    Ca CEC_7  sand
+##   &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 colusa 1         0      3 A       0.3  25.7   9    23      46
+## 2 colusa 2         3      8 ABt     0.2  23.7   5.6  21.4    42
+## 3 colusa 3         8     30 Bt1     0.1  23.2   1.9  23.7    40
+## 4 colusa 4        30     42 Bt2     0.1  44.3   0.3  43      27
+## 
+*## ----- Sites (1 / 1 rows  |  2 / 2 columns) -----
+## # A tibble: 1 x 2
+##   id     new_var
+##   &lt;chr&gt;    &lt;dbl&gt;
+## 1 colusa       2
+## 
+## Spatial Data:
+##      [,1]
+## [1,]   NA
+## [1] NA
+```
 
 ---
 class: bodySlide
@@ -615,7 +680,7 @@ profileApply(sp4, frameify = TRUE,
 
 ```
 ## # A tibble: 10 x 2
-##    id             soil_depth
+*##    id             soil_depth
 ##    &lt;chr&gt;               &lt;int&gt;
 ##  1 colusa                 42
 ##  2 glenn                  34
@@ -628,13 +693,16 @@ profileApply(sp4, frameify = TRUE,
 ##  9 shasta-trinity         40
 ## 10 tehama                 16
 ```
+???
 
----
+`profileApply` is the {aqp} analogue of the base R `*apply` functions, only it iterates over profiles rather than e.g. list elements for `lapply`.
+
+--- 
 class: bodySlide
 &lt;br&gt;
 ## {`aqp`} Methods (iteration)
 
-With recent internal optimizations, `profileApply` now scales to larger collections.
+With recent internal optimizations, `profileApply` scales to larger collections.
 
 ![](img/chunkApply.png)
 
@@ -642,93 +710,15 @@ With recent internal optimizations, `profileApply` now scales to larger collecti
 
 "Use `profileApply` to apply a function to each profile in a _SoilProfileCollection_, like base **R** `*apply`. You can use the `simplify` and `frameify` arguments to change the result object type."
 
----
-class: bodySlideLite
-&lt;br&gt;
-## {`aqp`} Methods (split; SPC -&gt; list)
-
-If you need to operate on other groupings, splitting into `list` is a good option.
-
-
-```r
-a.list &lt;- split(sp4, f = idname(sp4))
-```
-
-
-```r
-str(a.list, max.level = 1)
-```
-
-```
-## List of 10
-##  $ colusa        :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
-##  $ glenn         :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
-##  $ kings         :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
-##  $ mariposa      :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
-##  $ mendocino     :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
-##  $ napa          :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
-##  $ san benito    :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
-##  $ shasta        :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
-##  $ shasta-trinity:Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
-##  $ tehama        :Formal class 'SoilProfileCollection' [package "aqp"] with 9 slots
-```
+`profileApply` is used internally by other methods like `glomApply` and `mutate_profile`
 
 ---
 class: bodySlide
 &lt;br&gt;
-## {`aqp`} Methods (split; SPC -&gt; list)
-
-If you need to operate on other groupings, splitting into `list` is a good option.
-
-
-```r
-a.list &lt;- split(sp4, f = idname(sp4))
-```
-
-
-```r
-str(a.list, max.level = 1)
-```
-
---
-
-```r
-a.list[[1]]
-```
-
-```
-## SoilProfileCollection with 1 profiles and 4 horizons
-## profile ID: id  |  horizon ID: hzID 
-## Depth range: 42 - 42 cm
-## 
-## ----- Horizons (4 / 4 rows  |  10 / 15 columns) -----
-## # A tibble: 4 x 10
-##   id     hzID    top bottom name      K    Mg    Ca CEC_7  sand
-##   &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
-## 1 colusa 1         0      3 A       0.3  25.7   9    23      46
-## 2 colusa 2         3      8 ABt     0.2  23.7   5.6  21.4    42
-## 3 colusa 3         8     30 Bt1     0.1  23.2   1.9  23.7    40
-## 4 colusa 4        30     42 Bt2     0.1  44.3   0.3  43      27
-## 
-## ----- Sites (1 / 1 rows  |  2 / 2 columns) -----
-## # A tibble: 1 x 2
-##   id     new_var
-##   &lt;chr&gt;    &lt;dbl&gt;
-## 1 colusa       2
-## 
-## Spatial Data:
-##      [,1]
-## [1,]   NA
-## [1] NA
-```
-
----
-class: bodySlide
-&lt;br&gt;
-## {`aqp`} Methods (combine; list -&gt; SPC)
+## {`aqp`} Methods (`combine`; list -&gt; SPC)
 
 Recombine list elements into "original" SoilProfileCollection with `combine`
-
+.left-code-slight[
 
 ```r
 sp4 &lt;- combine(a.list)
@@ -742,11 +732,11 @@ sp4
 ```
 
 ```
-## SoilProfileCollection with 10 profiles and 30 horizons
+*## SoilProfileCollection with 10 profiles and 30 horizons
 ## profile ID: id  |  horizon ID: hzID 
 ## Depth range: 16 - 49 cm
 ## 
-## ----- Horizons (6 / 30 rows  |  10 / 15 columns) -----
+*## ----- Horizons (6 / 30 rows  |  10 / 15 columns) -----
 ## # A tibble: 6 x 10
 ##   id     hzID    top bottom name      K    Mg    Ca CEC_7  sand
 ##   &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
@@ -758,7 +748,7 @@ sp4
 ## 6 glenn  6         9     34 Bt      0.3  18.9   4.5  27.5    49
 ## [... more horizons ...]
 ## 
-## ----- Sites (6 / 10 rows  |  2 / 2 columns) -----
+*## ----- Sites (6 / 10 rows  |  2 / 2 columns) -----
 ## # A tibble: 6 x 2
 ##   id        new_var
 ##   &lt;chr&gt;       &lt;dbl&gt;
@@ -772,7 +762,7 @@ sp4
 ## 
 ## Spatial Data: [EMPTY]
 ```
-
+]
 ---
 class: bodySlide
 &lt;br&gt;
@@ -876,40 +866,13 @@ class: bodySlide
 *horizons(sp4) &lt;- data.frame(id = c("mariposa","mendocino"), hz_grp = "group")
 h &lt;- horizons(sp4)
 ```
-<<<<<<< HEAD
 .pull-left[
-=======
-
-
-```r
-horizons(sp4)[,c(idname(sp4),"hz_grp")]
-```
-
-```
-## # A tibble: 30 x 2
-##    id       hz_grp
-##    &lt;chr&gt;    &lt;chr&gt; 
-##  1 colusa   &lt;NA&gt;  
-##  2 colusa   &lt;NA&gt;  
-##  3 colusa   &lt;NA&gt;  
-##  4 colusa   &lt;NA&gt;  
-##  5 glenn    &lt;NA&gt;  
-##  6 glenn    &lt;NA&gt;  
-##  7 kings    &lt;NA&gt;  
-##  8 kings    &lt;NA&gt;  
-##  9 kings    &lt;NA&gt;  
-## 10 mariposa group 
-## # … with 20 more rows
-```
-
->>>>>>> b0b921ab89206944ae906c3d2bf74ba427b79a4f
 
 ```r
 h[5:14,c(idname(sp4),"hz_grp")]
 ```
 
 ```
-<<<<<<< HEAD
 ## # A tibble: 10 x 2
 ##    id        hz_grp
 ##    &lt;chr&gt;     &lt;chr&gt; 
@@ -923,28 +886,6 @@ h[5:14,c(idname(sp4),"hz_grp")]
 ##  8 mariposa  group 
 ##  9 mariposa  group 
 ## 10 mendocino group
-=======
-## 
-## group  &lt;NA&gt; 
-##     7    23
-```
-
----
-class: bodySlide
-&lt;br&gt;
-## {aqp} S4 methods (left joins)
-### `horizons&lt;-`
-
-
-```r
-*horizons(sp4) &lt;- data.frame(id = c("mariposa","mendocino"),
-*                           hz_grp = "group")
-```
-
-
-```r
-horizons(sp4)[,c(idname(sp4),"hz_grp")]
->>>>>>> b0b921ab89206944ae906c3d2bf74ba427b79a4f
 ```
 ]
 .pull-right[
@@ -964,13 +905,12 @@ table(h$hz_grp, useNA = "ifany")
 class: bodySlide
 &lt;br&gt;
 ## {`aqp`} Soil Color
-.center[####{`aqp`} has methods for soil data in&lt;br&gt;Munsell, sRGB and CIELAB color space.]
-
 .pull-left[
 &lt;img src="Expanding-the-Toolkit-for-Soil-Scientists_files/figure-html/plot-Tama-1.png" width="720" /&gt;
 ]
 
 .pull-right[
+.center[#### {`aqp`} has methods for soil data in&lt;br&gt;Munsell, sRGB and CIELAB.]
 `aggregateColor`,
 `colorContrast`,
 `colorQuantiles`,
@@ -1101,6 +1041,8 @@ McGahan, D.G., Southard, R.J, Claassen, V.P. 2009. Plant-Available Calcium Varie
 
 R Core Team. 2020. R: A language and environment for statistical computing. R Foundation for
 Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+
+Xie, Y. 2020. xaringan: Presentation Ninja. R package version 0.17.1. https://github.com/yihui/xaringan
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
