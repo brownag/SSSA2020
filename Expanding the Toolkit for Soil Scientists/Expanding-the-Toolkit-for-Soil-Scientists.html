@@ -3,6 +3,7 @@
   <head>
     <title>Expanding-the-Toolkit-for-Soil-Scientists.utf8</title>
     <meta charset="utf-8" />
+    <script src="Expanding-the-Toolkit-for-Soil-Scientists_files/header-attrs-2.4/header-attrs.js"></script>
     <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/hygge.css" rel="stylesheet" />
     <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
@@ -176,22 +177,22 @@ head(sp4)
 
 
 ```
-## # A tibble: 6 x 11
-##   id     name    top bottom     K    Mg    Ca CEC_7  sand  silt  clay
-##   &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-## 1 colusa A         0      3   0.3  25.7   9    23      46    33    21
-## 2 colusa ABt       3      8   0.2  23.7   5.6  21.4    42    31    27
-## 3 colusa Bt1       8     30   0.1  23.2   1.9  23.7    40    28    32
-## 4 colusa Bt2      30     42   0.1  44.3   0.3  43      27    18    55
-## 5 glenn  A         0      9   0.2  21.9   4.4  18.8    54    20    25
-## 6 glenn  Bt        9     34   0.3  18.9   4.5  27.5    49    18    34
+## # A tibble: 6 x 10
+##   id     name    top bottom     K    Mg    Ca CEC_7  sand  silt
+##   &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;
+## 1 colusa A         0      3   0.3  25.7   9    23      46    33
+## 2 colusa ABt       3      8   0.2  23.7   5.6  21.4    42    31
+## 3 colusa Bt1       8     30   0.1  23.2   1.9  23.7    40    28
+## 4 colusa Bt2      30     42   0.1  44.3   0.3  43      27    18
+## 5 glenn  A         0      9   0.2  21.9   4.4  18.8    54    20
+## 6 glenn  Bt        9     34   0.3  18.9   4.5  27.5    49    18
 ```
 ---
 class: bodySlide
 &lt;br&gt;
 ## {`aqp`} Methods (basics)
 
-#### "Promote" _data.frame_-like horizon data to a _SoilProfileCollection_ object.
+####"Promote" _data.frame_-like horizon data to a _SoilProfileCollection_ object.
 
 
 ```r
@@ -235,7 +236,7 @@ str(profile_id(sp4), vec.len = 3) # view first 3 profile IDs
 
 ???
 
-You can promote data.frame-like objects containing horizon data to SoilProfileCollection objects. Unique layers are distinguished by the combination of site `id` and `top` depth. A brand new feature is the ability to use {data.table} and {tibble} data.frame subclasses inside SoilProfileCollection objects. This allows for faster subset operations and joins {data.table} as well as enhanced compatibility with {tidyverse} workflows and/or user-preferred packages.
+You can promote data.frame-like objects containing horizon data to _SoilProfileCollection_ objects. Unique layers are distinguished by the combination of site `id` and `top` depth. A brand new feature is the ability to use {data.table} and {tibble} data.frame subclasses inside SoilProfileCollection objects. This allows for faster subset operations and joins {data.table} as well as enhanced compatibility with {tidyverse} workflows and/or user-preferred packages.
 ---
 class: bodySlide
 &lt;br&gt;
@@ -309,15 +310,15 @@ horizons(sp4) # "horizon" data
 ##  8 kings    Bt1       4     13   0.6  12.1   7    18      36    49    15  0.75 8    
 ##  9 kings    Bt2      13     40   0.8  17.7   4.4  20      27    45    27  0.67 9    
 ## 10 mariposa A         0      3   0.6  28.3   5.8  29.3    42    26    32  0.25 10   
-## # ... with 20 more rows
+## # … with 20 more rows
 ```
 
 ???
 Explain S4.
 
-The site and horizons methods provide access to the S4 site and horizon slots within the SoilProfileCollection object.
+The site and horizons methods provide access to the S4 site and horizon slots within the _SoilProfileCollection_ object.
 
-A major feature of aqp and the SoilProfileCollection are the plot methods. These provide a rapid way to visualize geometric and tabular data from a set of soil profiles. Here, we are viewing all profiles in the `sp4` SoilProfileCollection object, with the thematic attribute "clay" (% clay content). The default arguments of `plot` often need to be adjusted for figures containing very small or very large numbers of profiles. For better readability, we use a larger-than-default character expansion value for the labels.
+A major feature of aqp and the _SoilProfileCollection_ are the plot methods. These provide a rapid way to visualize geometric and tabular data from a set of soil profiles. Here, we are viewing all profiles in the `sp4` _SoilProfileCollection_ object, with the thematic attribute "clay" (% clay content). The default arguments of `plot` often need to be adjusted for figures containing very small or very large numbers of profiles. For better readability, we use a larger-than-default character expansion value for the labels.
 
 ---
 class: bodySlideLite
@@ -721,14 +722,7 @@ Recombine list elements into "original" SoilProfileCollection with `combine`
 .left-code-slight[
 
 ```r
-sp4 &lt;- combine(a.list)
-```
-
---
-
-
-```r
-sp4
+combine(a.list)
 ```
 
 ```
@@ -763,6 +757,7 @@ sp4
 ## Spatial Data: [EMPTY]
 ```
 ]
+
 ---
 class: bodySlide
 &lt;br&gt;
@@ -820,7 +815,7 @@ sp4 %&gt;%
 
 --
 
-&lt;img src="Expanding-the-Toolkit-for-Soil-Scientists_files/figure-html/unnamed-chunk-40-1.png" width="1080" /&gt;
+&lt;img src="Expanding-the-Toolkit-for-Soil-Scientists_files/figure-html/unnamed-chunk-39-1.png" width="1080" /&gt;
 
 ???
 
@@ -856,6 +851,7 @@ head(site(sp4), 5)
 ```
 
 &lt;!-- table(site(sp4)$site_grp, useNA = "ifany") --&gt;
+
 ---
 class: bodySlide
 &lt;br&gt;
@@ -928,6 +924,7 @@ class: bodySlide
 `soilColorSignature`,
 `soilPalette`
 ]
+
 ---
 class: bodySlide
 &lt;br&gt;
@@ -991,7 +988,7 @@ class: bodySlideLite
 
 {`aqp`} has many functions that employ heuristics about horizon designations, geometry, and key diagnostic properties.
  
-&lt;img src="Expanding-the-Toolkit-for-Soil-Scientists_files/figure-html/unnamed-chunk-48-1.png" width="864" /&gt;
+&lt;img src="Expanding-the-Toolkit-for-Soil-Scientists_files/figure-html/unnamed-chunk-47-1.png" width="864" /&gt;
 
 ???
 

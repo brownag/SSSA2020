@@ -151,14 +151,14 @@ head(sp4)
 
 ```{r, echo=FALSE}
 sp4 <- tibble::as_tibble(sp4)
-head(sp4[,-length(colnames(sp4))])
+head(sp4[,-((length(colnames(sp4))-1):length(colnames(sp4))) ])
 ```
 ---
 class: bodySlide
 <br>
 ## {`aqp`} Methods (basics)
 
-#### "Promote" _data.frame_-like horizon data to a _SoilProfileCollection_ object.
+####"Promote" _data.frame_-like horizon data to a _SoilProfileCollection_ object.
 
 ```{r}
 class(sp4)
@@ -184,7 +184,7 @@ str(profile_id(sp4), vec.len = 3) # view first 3 profile IDs
 
 ???
 
-You can promote data.frame-like objects containing horizon data to SoilProfileCollection objects. Unique layers are distinguished by the combination of site `id` and `top` depth. A brand new feature is the ability to use {data.table} and {tibble} data.frame subclasses inside SoilProfileCollection objects. This allows for faster subset operations and joins {data.table} as well as enhanced compatibility with {tidyverse} workflows and/or user-preferred packages.
+You can promote data.frame-like objects containing horizon data to _SoilProfileCollection_ objects. Unique layers are distinguished by the combination of site `id` and `top` depth. A brand new feature is the ability to use {data.table} and {tibble} data.frame subclasses inside SoilProfileCollection objects. This allows for faster subset operations and joins {data.table} as well as enhanced compatibility with {tidyverse} workflows and/or user-preferred packages.
 ---
 class: bodySlide
 <br>
@@ -226,9 +226,9 @@ horizons(sp4) # "horizon" data
 ???
 Explain S4.
 
-The site and horizons methods provide access to the S4 site and horizon slots within the SoilProfileCollection object.
+The site and horizons methods provide access to the S4 site and horizon slots within the _SoilProfileCollection_ object.
 
-A major feature of aqp and the SoilProfileCollection are the plot methods. These provide a rapid way to visualize geometric and tabular data from a set of soil profiles. Here, we are viewing all profiles in the `sp4` SoilProfileCollection object, with the thematic attribute "clay" (% clay content). The default arguments of `plot` often need to be adjusted for figures containing very small or very large numbers of profiles. For better readability, we use a larger-than-default character expansion value for the labels.
+A major feature of aqp and the _SoilProfileCollection_ are the plot methods. These provide a rapid way to visualize geometric and tabular data from a set of soil profiles. Here, we are viewing all profiles in the `sp4` _SoilProfileCollection_ object, with the thematic attribute "clay" (% clay content). The default arguments of `plot` often need to be adjusted for figures containing very small or very large numbers of profiles. For better readability, we use a larger-than-default character expansion value for the labels.
 
 ---
 class: bodySlideLite
@@ -429,16 +429,11 @@ class: bodySlide
 
 Recombine list elements into "original" SoilProfileCollection with `combine`
 .left-code-slight[
-```{r}
-sp4 <- combine(a.list)
-```
-
---
-
 ```{r, highlight.output=c(1,5,17)}
-sp4
+combine(a.list)
 ```
 ]
+
 ---
 class: bodySlide
 <br>
@@ -520,6 +515,7 @@ head(site(sp4), 5)
 ```
 
 <!-- table(site(sp4)$site_grp, useNA = "ifany") -->
+
 ---
 class: bodySlide
 <br>
@@ -586,6 +582,7 @@ groupedProfilePlot(tama2[11:14,], name.style = "left-center",
 `soilColorSignature`,
 `soilPalette`
 ]
+
 ---
 class: bodySlide
 <br>
