@@ -12,8 +12,20 @@
   background-position: center top;
 }
 
+.bodySlideLite {
+  background-image: url(img/NRCS_General_-_November_2017_FINAL_lite.jpg);
+  background-size: contain;
+  background-position: center top;
+}
+
 .titleSlide {
   background-image: url(img/NRCS_General_-_November_2017_FINAL.jpg);
+  background-size: contain;
+  background-position: center top;
+}
+
+.sssaSlide {
+  background-image: url(img/sssa2020_template.png);
   background-size: contain;
   background-position: center top;
 }
@@ -21,4 +33,22 @@
 .remark-slide-number {
   margin-bottom: -12px;
   margin-right: -15px;
+}
+
+.left-code {
+  color: #777;
+  width: 68%;
+  height: 92%;
+  float: left;
+}
+
+.up {
+  float: top;
+  width: 92%;
+}
+
+.right-plot {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
 }
