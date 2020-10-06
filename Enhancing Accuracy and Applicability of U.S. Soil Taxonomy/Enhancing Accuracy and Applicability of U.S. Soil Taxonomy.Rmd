@@ -37,6 +37,9 @@ Pedologic knowledge has been hard won through the work of countless soil and ear
 Changes to criteria that affect fundamental diagnostic features in Soil Taxonomy can have large influences on classification and, by association, grouping of soil concepts that are similar for use and management in soil surveys. We have developed data structures and computer code in the R package “aqp," or Algorithms for Quantitative Pedology, that are capable of reasoning over soil profile data and criteria. This implementation of concepts has offered novel opportunities for data-driven analyses relating properties (predicted or observed) to taxonomic or interpretive groups. Routines for programmatic identification of soil features such as argillic horizons and mollic epipedons are a fundamental steps towards automated classification using U.S. Soil Taxonomy.
 -->
 
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
+```
 
 ---
 class: bodySlide
