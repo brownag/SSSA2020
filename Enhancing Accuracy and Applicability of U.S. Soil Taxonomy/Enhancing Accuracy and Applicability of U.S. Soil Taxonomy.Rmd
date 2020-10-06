@@ -93,7 +93,7 @@ class: bodySlideNOBR
 <span>&nbsp;&nbsp;&nbsp;&nbsp;KST Lookup App: https://brownag.shinyapps.io/KSTLookup<br></span>
 <span>&nbsp;&nbsp;&nbsp;&nbsp;KST Preceding Taxa App: https://brownag.shinyapps.io/KSTPreceding<br></span>
 
-![](img/kst_glaciestels.png)
+![](img/kst_glaciestels.PNG)
 
 ??? 
 
@@ -246,8 +246,6 @@ class: bodySlideNOBR
 
 **<small>Official Series Description: https://soilseries.sc.egov.usda.gov/OSD_Docs/T/TAMA.html</small>**
 
-.center[
-
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 load(file="img/tama.Rda")
 tama$SPC$mollicthk <- profileApply(tama$SPC, mollic.thickness.requirement, clay.attr = 'clay')
@@ -267,9 +265,8 @@ tama2 <- harmonize(tama$SPC, list(mollic = list(moist_color = "moist_soil_color"
 par(mar=c(0,0,0,0))
 groupedProfilePlot(tama2[11:18,], name.style = "left-center",
                    groups = "hgroup", color = "mollic", 
-                   cex.names = 1.3, group.name.cex = 2.4, axis.line.offset = -4.2)
+                   cex.names = 1.3, group.name.cex = 1.8, axis.line.offset = -4.2)
 ```
-]
 
 ---
 class: bodySlideNOBR
@@ -351,14 +348,14 @@ class: bodySlide
 
 **<small>Official Series Description: https://soilseries.sc.egov.usda.gov/OSD_Docs/F/FAYETTE.html</small>**
 
-[![](img/fayette_ric.png)](https://casoilresource.lawr.ucdavis.edu/sde/?series=fayette)
+[![](img/fayette_ric.PNG)](https://casoilresource.lawr.ucdavis.edu/sde/?series=fayette)
 
 ---
 class: bodySlideNOBR
 <br>
 ## Soil Series (Fayette Extent)
 
-[![](img/fayette_extent.png)](https://casoilresource.lawr.ucdavis.edu/see/#fayette)
+[![](img/fayette_extent.PNG)](https://casoilresource.lawr.ucdavis.edu/see/#fayette)
 
 ---
 class: bodySlide
@@ -409,13 +406,15 @@ class: bodySlide
 .right-column[
 #### Goals and dreams
 
-1. "Fuzzy taxon membership" developed using _defined_ weighting, assumptions and heuristics 
+1. "Fuzzy taxon membership" developed using _defined_ weights, assumptions and heuristics
+
+2. Sensitivity analysis using properties _and_ geometry for "most likely" profile taxonomic placement
     
-2. Regional/purposive subsets or "views" of the full taxonomy: to aid in education, reduce fatigue and increase accessibility for non-specialists 
+3. Regional/purposive subsets or "views" of the complete  taxonomy: to aid in education, reduce fatigue and increase accessibility for non-specialists 
  
-3. Justification (and possible simplification) of concepts
+4. Justification (and possible simplification) of concepts
  
-4. Quantification of impacts and a unit-testing suite for proposed revisions
+5. Quantification of impacts and a unit-testing suite for proposed revisions
 ]
 
 ???
