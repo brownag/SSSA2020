@@ -435,8 +435,6 @@ class: bodySlideNOBR
 
 ![](img/ct600.jpg)
 
---
-
 ???
 
  - As long as we are willing to collect the needed information and apply criteria in an unbiased way, soil classification in one form or another is fundamental to understanding soil landscape relationships. A soil-landscape model is a _simplification_ of pedologic and geomorphic "reality." Simplifications may not be completely "correct" but they may be useful.
