@@ -13,14 +13,14 @@ class: titleSlide
 .pull-left[
   ## Enhancing Accuracy and Applicability of U.S. Soil Taxonomy
   <br><br><br>
-  #### SSSA 2020 -- Future of Pedology Symposium 
+  #### SSSA 2020 &mdash; Future of Pedology Symposium 
 ]
 
 .right[.large[<br><br><br><br><br><br><br><br>
 Andrew G. Brown<br>
 <a href="mailto:andrew.g.brown@usda.gov">`r icon::fa("mail-bulk")`&nbsp;andrew.g.brown@usda.gov</a>
 <br><br>
-Dr. Dylan E. Beaudette</b><br>
+Dylan E. Beaudette</b><br>
 <a href="mailto:dylan.beaudette@usda.gov">`r icon::fa("mail-bulk")`&nbsp;dylan.beaudette@usda.gov</a><br><br>
 
 ]]
@@ -50,7 +50,7 @@ class: bodySlide
 
 .right-column[
 #### Andrew G. Brown
- - Soil Scientist in _Sonora, CA_, Southwest Soil Survey Region
+ - Soil Scientist in Sonora, CA, Southwest Soil Survey Region
  
  - Area of responsibility: Sierra Nevada Foothills & Mountains (MLRAs 18 & 22A)
  
@@ -65,17 +65,11 @@ class: bodySlideNOBR
 
 ## The _Keys to Soil Taxonomy_ are like a set of sieves
 
-.left-column[
+<span>&nbsp;&nbsp;&nbsp;&nbsp;KST Lookup App: https://brownag.shinyapps.io/KSTLookup<br></span>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;KST Preceding Taxa App: https://brownag.shinyapps.io/KSTPreceding<br></span>
+
+.top[
 ![](img/sieve.jpg)
-]
-
-<span>&nbsp;&nbsp;&nbsp;KST Lookup: https://brownag.shinyapps.io/KSTLookup<br></span>
-<span>&nbsp;&nbsp;&nbsp;KST Preceding Taxa: https://brownag.shinyapps.io/KSTPreceding<br></span>
-
---
-
-.right-column[
-![](img/kst_preceding.png)
 ]
 
 ---
@@ -84,8 +78,20 @@ class: bodySlideNOBR
 
 ## The _Keys to Soil Taxonomy_ are like a set of sieves
 
-<span>&nbsp;&nbsp;&nbsp;KST Lookup: https://brownag.shinyapps.io/KSTLookup<br></span>
-<span>&nbsp;&nbsp;&nbsp;KST Preceding Taxa: https://brownag.shinyapps.io/KSTPreceding<br></span>
+
+<span>&nbsp;&nbsp;&nbsp;&nbsp;KST Lookup App: https://brownag.shinyapps.io/KSTLookup<br></span>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;KST Preceding Taxa App: https://brownag.shinyapps.io/KSTPreceding<br></span>
+
+![](img/kst_preceding.png)
+
+---
+class: bodySlideNOBR
+<br>
+
+## The _Keys to Soil Taxonomy_ are like a set of sieves
+
+<span>&nbsp;&nbsp;&nbsp;&nbsp;KST Lookup App: https://brownag.shinyapps.io/KSTLookup<br></span>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;KST Preceding Taxa App: https://brownag.shinyapps.io/KSTPreceding<br></span>
 
 ![](img/kst_glaciestels.png)
 
@@ -105,13 +111,11 @@ class: bodySlideNOBR
 ]
 
 .pull-right[
-```{r, echo = FALSE}
+```{r, echo = FALSE, highlight.rows=c(3,6)}
 library(kableExtra)
 diag <- read.csv("subgrp_diag_counts_table.csv")
 #knitr::kable(diag, row.names = FALSE, )
-column_spec(kable_classic(kbl(diag, 
-                              caption = "Times Used in Order - Subgroup Level Keys"), 
-                          full_width = F), 2, background="white")
+kable_classic(kbl(diag[1:12,], caption = "Times Used in Subgroup to Order Keys"),  full_width = F)
 ```
 ]
 
@@ -127,7 +131,7 @@ class: bodySlide
 
 > _“The lower boundary that separates soil from the nonsoil underneath is most difficult to define_
 > ...
-> In some instances the more weakly cemented bedrocks ... have been described below the lower boundary of soil and used to differentiate soil series (series control section, defined in chapter 17). This is permissible even though the paralithic materials below a paralithic contact are not considered soil in the true sense.” (KST, p. 1)
+> In some instances the more weakly cemented bedrocks ... have been described below the lower boundary of soil and used to differentiate soil series (series control section, defined in chapter 17). This is permissible even though the paralithic materials below a paralithic contact are not considered soil in the true sense.” (Keys to Soil Taxonomy, 12th ed., p. 1)
 
 <table border=0>
 <tr> 
@@ -141,42 +145,26 @@ class: bodySlide
 
 In Sonora, with the wide variety of parent materials we have, we need to pay close attention to series control sections and criteria related to bedrock contacts.
 
-Historic concepts are often inadequate to constrain a series concept to a single taxonomic family. This poses a correlation problem for update work involving older series. Older series with large extent generally are more broadly defined, due to changes in taxonomy / concepts / mapping standards over time. 
+Historic series concepts are often inadequate to constrain to a single modern taxonomic family. This poses a correlation problem for update work involving older series. Older series with large extent generally are more broadly defined, due to changes in taxonomy / concepts / mapping standards over time. 
 
-What are the factors affecting the bedrock cementation in a set of related components?
+What are the factors affecting the bedrock cementation in a set of related components?
 
  - Regional climatic patterns?
  - Geologic formation / member?
  - Local terrain / age of surface / hydrology? 
  - Something else – incomplete or inconsistent descriptions?
 
----
-class: bodySlide
-<br>
-<<<<<<< HEAD
-## Texas "Densics"
-=======
-## Texas Densics
->>>>>>> 48c145d912718158e878c25182553147d87783e4
+I think it is continually important for pedologists to focus on processes that may be occuring at these soil-non-soil interfaces. Even if you consider these to be non-pedologic -- factors driving e.g. rate of parent material formation are tied in to soil forming factors.
 
----
-class: bodySlide
-<br>
-## Soil Age & Time 
-
-???
-
-Jenny (1941) and others have questioned at what point a parent material becomes "soil". On the other side of the spectrum, we have the question of at what point a soil becomes a "paleosol" -- a soil formed under a different suite of conditions. Between these two extremes, we have many shades of gray -- these are local considerations that Soil Survey Staff have spent many years carefully documenting.
-
-Additions, translocations, removals drive the favorability of different reactions, the mobility of constituents and more. Accumulations and depletions, in general, are essential to gathering "evidence" about soil forming process and therefore tie in deeply with the definitions of our diagnostic features. The process itself is not what is important, but rather the evidence of that process. This way, if our process understanding improves or changes, we still have fundamental physical observations that can be re-correlated under the new understanding.
-
-The concept that "soils are clay factories" essentially says that given enough time and stability, we will start to see accumulations of secondary weathering products from parent material -- this "accumulation" is the essence of the argillic horizon, which was the third item on our list. 
+Jenny (1941) and others have questioned at what point a parent material becomes "soil". On the other side of the spectrum, we have the question of at what point a soil becomes a "paleosol". Between these two extremes, we have many shades of gray -- these are local considerations that Soil Survey Staff have spent many years carefully documenting. We must accept that soils form essentially immediately after deposition stops, but we may not see the evidence of that for some time (say, several hundred years)
 
 ---
 class: bodySlide
 <br>
 ## The Argillic Horizon
-#### Cohasset pedon example
+**[Cohasset](https://casoilresource.lawr.ucdavis.edu/see/#Cohasset) -_ Fine-loamy, mixed, active, mesic Ultic Haploxeralfs_**
+
+**<small>Official Series Description: https://soilseries.sc.egov.usda.gov/OSD_Docs/C/COHASSET.html</small>**
 .left-column[
 ```{r, echo=FALSE, message =  FALSE, fig.width=4.5, fig.height=12}
 par(mar = c(0,0,0,6))
@@ -195,6 +183,8 @@ abline(h = d, lty = 2)
 ```
 ]
 
+--
+
 .right-column[
 
 .center[
@@ -204,32 +194,61 @@ m
 ```
 ]
 
-- Argillic & Particle Size Control Section start at `r paste0(d,'cm')`
+- Argillic & Particle Size Control Section start at `r paste(d,'cm')`
 
-- Horizon #4 meets the clay increase requirement relative to #1, #2 and #3, but increase occurs _within a vertical distance_ of only #3.
+- A 0.5% clay content difference in the **Bt1** shifts the Particle Size Control Section downward by 34 cm 
 
 ]
 
+???
+
+- **Bt2** horizon meets the clay increase requirement relative to **A1**, **A2** and **Bt1**, but increase occurs _within a vertical distance_ of **Bt1** only.
 ---
 class: bodySlide
 <br>
+## The Argillic Horizon
 
-## The Soil Surface
+#### Problems
 
----
-class: bodySlideNOBR
-## The Mollic Epipedon
+ - _Upper bound of Argillic_ &mdash; tied to Particle Size Control Section boundary
 
-.top[![](img/mollic_requirement.png)]
+--
+ 
+ - _Bottom of the Argillic_ &mdash; depends on (lack of) clay films or other accumulation
 
+--
+
+ - _Truncated Argillics_ &mdash; depends on a lithologic discontinuity or exposure
+ 
+--
+
+ - _"Wimpy" Argillics_ &mdash; low total clay content, marginal clay increase, limited development of morphology (e.g. clay films)
+ 
+ 
+???
+
+ - Upper bound (~clay increase) has unintended effects when rules are applied literally with no "fuzziness" or opportunity to over-ride
+
+
+ - Bottom of the argillic -- computation mostly reliant on horizon designation by describer or ped and void features
+
+ - Truncated argillics -- evidence may not be obvious or available to describer; beware the "pseudoprofile"! There is a need for new methods and standards to "decouple" pedology and stratigraphy. 
+ 
+ - "Wimpy" -- they _are_ argillics, but are at or near our limit of detection, and might not _interpret_ the same as others with heavier textures
+  
 ---
 class: bodySlideNOBR
 <br>
+
 ## The Mollic Epipedon
 
+**[Tama](https://casoilresource.lawr.ucdavis.edu/see/#tama) -_ Fine-silty, mixed, superactive, mesic Typic Argiudolls_**
+
+**<small>Official Series Description: https://soilseries.sc.egov.usda.gov/OSD_Docs/T/TAMA.html</small>**
+
 .center[
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-par(mar=c(0,0,0,8))
 load(file="img/tama.Rda")
 tama$SPC$mollicthk <- profileApply(tama$SPC, mollic.thickness.requirement, clay.attr = 'clay')
 tama$SPC$is_mollic_color <- hasDarkColors(tama$SPC, d_value = NA)
@@ -243,54 +262,236 @@ horizons(tama$SPC)$is_mollic_mask[!tama$SPC$is_mollic_color] <- rgb(1,1,1)
 tama2 <- harmonize(tama$SPC, list(mollic = list(moist_color = "moist_soil_color", 
                                                 is_mollic_color = "is_mollic_mask")))
 ```
-```{r, echo=FALSE, fig.width=20, fig.height=15, message=F, warning=F}
+
+```{r, echo=FALSE, fig.width=12, fig.height=8, message=F, warning=F}
+par(mar=c(0,0,0,0))
 groupedProfilePlot(tama2[11:18,], name.style = "left-center",
                    groups = "hgroup", color = "mollic", 
-                   cex.names = 2.4, group.name.cex = 2.4)
+                   cex.names = 1.3, group.name.cex = 2.4, axis.line.offset = -4.2)
 ```
 ]
+
 ---
 class: bodySlideNOBR
 <br>
 
 ## The Mollic Epipedon
 
-.center[
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-par(mar=c(0,0,0,12))
-load(file="img/tama.Rda")
-tama$SPC$mollicthk <- profileApply(tama$SPC, mollic.thickness.requirement, clay.attr = 'clay')
-tama$SPC$is_mollic_color <- hasDarkColors(tama$SPC, d_value = NA)
-horizons(tama$SPC)$is_mollic_mask <- rgb(0,0,0)
-horizons(tama$SPC)$is_mollic_mask[!tama$SPC$is_mollic_color] <- rgb(1,1,1)
+#### Problems
 
-# addDiagnosticBracket(tama$SPC, kind = 'particle size control section', lwd=3)
-# addDiagnosticBracket(tama$SPC, kind = 'minimum mollic/umbric thickness', lwd=3,
-#                      offset=0, tick.length=0, col="green")
+ - Physical mixing criteria are confusing, impossible to apply retroactively, and subjective when materials are very dissimilar in composition or density
 
-tama2 <- harmonize(tama$SPC, list(mollic = list(moist_color = "moist_soil_color", 
-                                                is_mollic_color = "is_mollic_mask")))
+--
+
+ - The sliding scale thickness requirement is commonly misinterpreted and may be difficult to apply consistently
+  
+  - Simultaneous dependency on: texture class of subhorizons, distribution of organic carbon with depth, identifiable secondary carbonates, petrocalcic/duripan/fragipan, densic/lithic/paralithic contacts, argillic, cambic, natric, oxic or spodic horizons. Not only does it depend on presence/absence, but required thickness is determined by _depths to top or bottom_ of these features.
+
+--
+
+ - Several exceptions: keeping depositional phases in the Mollisols, aridic soil moisture regimes, color and organic carbon requirements in high carbonate materials 
+ 
+--
+ 
+
+???
+
+ - These criteria add a lot of "conceptual overhead" with possibly little, or infrequent, benefits. 
+ 
+We need to query the modern data (tools and extent of which they did not have access to back in the day) to determine which of these criteria are valuable. The logic in the Keys can likely be simplified while retaining the same key ideas.
+ 
+---
+class: bodySlideLite
+<br>
+
+## The Mollic Epipedon
+```{r, echo=FALSE,fig.width=12,fig.height=7}
+par(mar=c(0,0,0,5))
+load("img/mollicthk.Rda")
+s.sub@horizons[11,]$soil_color <- munsell2rgb("10YR", 2, 1)
+s.sub@diagnostic[6,]$top <- 7
+s.sub@diagnostic[6,]$bottom <- 32
+plotSPC(s.sub, label = "criteria", axis.line.offset = -3.5, cex.names = 1.1, id.style = "top",
+        name.style = "left-center")
+addDiagnosticBracket(s.sub, kind = 'particle size control section', lwd=3)
+addDiagnosticBracket(s.sub, kind = 'minimum mollic/umbric thickness', lwd=3,
+                     offset=0, tick.length=0, col="green")
+abline(h=c(18+0.5,25+0.5,54+0.5,75+0.5), lty=2)
+
+#mtext("aqp calculated\nMollic/Umbric Minimum Thickness Requirement\n& Particle Size Control Section Boundaries", 3)
+legend("bottomleft", c("particle size control section",
+                       "minimum mollic/umbric thickness",
+                       "absolute depths: 18, 25, 54, 75 cm"), lwd=c(3,3,1), lty=c(1,1,2),
+       col=c("black","green","black"))
 ```
-```{r, echo=FALSE, fig.width=20, fig.height=15, message=F, warning=F}
-groupedProfilePlot(tama2[11:18,], name.style = "left-center",
-                   groups = "hgroup", color = "mollic", 
-                   cex.names = 2.4, group.name.cex = 2.4)
-```
-]
+
+???
+
+Thickness requirement depends on the "solum thickness" (with regard to specific diagnostic features and properties)
+
+The dependency of something as fundamental as the mollic epipedon on so many other diagnostic features resaults in very difficult reasoning and juggling of depths by the user. It is also not clear how conflicts are resolved when multiple features that affect criteria are identified in a particular pedon. I assume you take the most restrictive thickness requirement?
 
 ---
 class: bodySlide
 <br>
 ## Soil Series
 
+ - The soil series is the lowest, most detailed taxonomic level in U.S. Soil Taxonomy
+
+ - Nominally, a soil series has a _single_ family-level classification. This is in the _Official Series Description_ (OSD).
+ 
+ - The _Range in Characteristics_ (RIC) should **not** range outside the series family.
+ 
+---
+class: bodySlide
+<br>
+## Soil Series (Fayette RIC)
+
+**[Fayette](https://casoilresource.lawr.ucdavis.edu/sde/?series=fayette) -_ Fine-silty, mixed, superactive, mesic Typic Hapludalfs_**
+
+**<small>Official Series Description: https://soilseries.sc.egov.usda.gov/OSD_Docs/F/FAYETTE.html</small>**
+
+[![](img/fayette_ric.png)](https://casoilresource.lawr.ucdavis.edu/sde/?series=fayette)
+
+---
+class: bodySlideNOBR
+<br>
+## Soil Series (Fayette Extent)
+
+[![](img/fayette_extent.png)](https://casoilresource.lawr.ucdavis.edu/see/#fayette)
+
+---
+class: bodySlide
+<br>
+## Soil Series in Soil Mapping
+
+ - Soil mapunit component ranges need not exactly match those of the series RIC, often they are wider.
+
+ - In practice, especially in less-detailed (Order 3+) mapping, Series-level components in the U.S. include:
+ 
+  - Soils _within_ the RIC of the series
+  
+  - Soils _outside_ the RIC that _have same family_ as the named series (generally: "similar soils", formerly: "variant")
+  
+  - Soils _not_ in the series family (taxadjuncts or less-prevalent series) that _interpret_ the "same" based on local model
+  
+ - _Dissimilar_ soils are separated based on interpretive difference(s) from the dominant condition in a mapunit.
+ 
+   - Dissimilar, _non-limiting_, soils may not be reflected consistently in <br>more general mapping if they are not extensive.
+
 ---
 class: bodySlide
 <br>
 ## Future of Soil Taxonomy
+.pull-left[
+![](img/soiltaxonomy_graph.png)
+.center[<small>All 3082 subgroup to order level taxa in U.S. Soil Taxonomy, "rooted" to a common node.</small>]
+]
 
+.pull-right[
+#### To reconcile the "divisive" nature of the Keys and questions of "similarity" &mdash; _what do we need?_
+ 
+ - Graph databases  capable of querying complex relationships between taxa, criteria, and metadata.
+ 
+ - A U.S. Soil Taxonomy ontology to define our terms and serve as a scaffold for other National Cooperative Soil Survey Standards
+
+]
 
 ---
+class: bodySlide
+<br>
+## Future of Soil Taxonomy
+.left-column[
+<br><br><br>
+![](img/soiltaxonomy_graph.png)
+]
 
+.right-column[
+#### Goals and dreams
+
+1. "Fuzzy taxon membership" developed using _defined_ weighting, assumptions and heuristics 
+    
+2. Regional/purposive subsets or "views" of the full taxonomy: to aid in education, reduce fatigue and increase accessibility for non-specialists 
+ 
+3. Justification (and possible simplification) of concepts
+ 
+4. Quantification of impacts and a unit-testing suite for proposed revisions
+]
+
+???
+
+Develop a system that can take in, annotate and reason over diverse datasets with a common vocabulary. Put assumptions "up front," and programatically "trim" unneeded detail. This strikes a balance between ad-hoc simplifications that are not properly encoded for consistency, and the typical types of information we have available for classification of soils in an area.
+
+---
+class: bodySlideNOBR
+<br>
 ## Impacts on Soil Mapping
 
+ - All soils are "different" &mdash; defined rules and systems allow us to "consistently" reason over them 
+ 
+ - _Taxadjunct is **not** a dirty word._ Embrace the variations nature has to offer.
 
+![](img/ct600.jpg)
+
+--
+
+???
+
+ - As long as we are willing to collect the needed information and apply criteria in an unbiased way, soil classification in one form or another is fundamental to understanding soil landscape relationships. A soil-landscape model is a _simplification_ of pedologic and geomorphic "reality." Simplifications may not be completely "correct" but they may be useful.
+
+ - Reproducible and transferrable research benefits from a formal classification system where there is one "right" answer. That "right" answer needs to be interpreted by individuals with local knowledge (soil scientists and stakeholders). I do not see raster products / stacks of properties replacing these any time soon. In almost all cases digital products are reliant on historic purposive sampling efforts which reflects the classifications and stratifications of the landscape put in place by the humans of that time.
+ 
+ - A classification system is not sacred. Soil Taxonomy is simply a tool for scaffolding our understanding of the diversity of soils throughout the world. It is not bad to change it, but we need a detailed understanding of the impacts, as changing definitions invariably leads to confusion. We need to refine concepts, not broaden them. There are cases where logic is not explicitly laid out such that the key results in a single answer, given the data, but these instances are rare, and even more rarely recognized. The complexity of ST prevents us from dealing with this in a comprehensive way, but that is not an argument to over-simplify without reason.
+ 
+ - Continuous (raster) products will be increasingly prevalent in the soils world. I feel stratification of landscape for model development based on soil forming factors will keep Soil Taxonomy and human soil surveyors relevant in the future. I see any continuous products as a derivative of the conceptual models developed by soil scientists. We decide what the inputs are, how and where what models are applied, etc.
+ 
+ - While other fields of study may be interested in more simplified views, pedology needs to reckon with our place in the soil modeling process and insert ourselves into those conversations lest we be left out.   
+ 
+---
+class: bodySlide
+<br>
+## Thank you for your attention!
+.left-column[
+<br>
+![](https://github.com/brownag.png)
+<br>
+
+![](https://github.com/dylanbeaudette.png)
+]
+
+.right-column[
+#### Andrew G. Brown, Soil Scientist, MLRA Soil Survey Office, Sonora, CA
+ 
+<a href="mailto:andrew.g.brown@usda.gov">`r icon::fa("mail-bulk")`&nbsp;andrew.g.brown@usda.gov</a><br>
+<a href="http://github.com/brownag">`r icon::fa("github")`&nbsp;brownag</a><br>
+<a href="http://twitter.com/humus_rocks">`r icon::fa("twitter")`&nbsp;@humus_rocks</a>
+
+#### Dylan E. Beaudette, Soil Scientist, National Soil Survey Center (duty station: Sonora, CA)
+
+<a href="mailto:dylan.beaudette@usda.gov">`r icon::fa("mail-bulk")`&nbsp;dylan.beaudette@usda.gov</a><br>
+<a href="http://github.com/dylanbeaudette">`r icon::fa("github")`&nbsp;dylanbeaudette</a><br>
+<a href="http://twitter.com/dylanbeaudette">`r icon::fa("twitter")`&nbsp;@dylanbeaudette</a>
+
+]
+
+_USDA is an equal opportunity provider and employer._
+
+---
+class: bodySlide
+<br>
+
+## References
+
+Beaudette, D.E., Roudier P., and A.T. O'Geen. 2013. Algorithms for Quantitative Pedology: A
+Toolkit for Soil Scientists. Computers & Geosciences. 52:258 - 268.
+
+National Cooperative Soil Survey. National Cooperative Soil Characterization Database. Available online. Accessed [10/1/2020].
+
+R Core Team. 2020. R: A language and environment for statistical computing. R Foundation for
+Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+
+Soil Survey Staff. 2014. Keys to Soil Taxonomy, 12th ed. USDA-Natural Resources Conservation Service, Washington, DC.
+
+Soil Survey Staff, Natural Resources Conservation Service, United States Department of Agriculture. Official Soil Series Descriptions. Available online. Accessed [10/1/2020].
+
+Xie, Y. 2020. xaringan: Presentation Ninja. R package version 0.17.1. https://github.com/yihui/xaringan
