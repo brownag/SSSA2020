@@ -18,6 +18,12 @@
   background-position: center top;
 }
 
+.bodySlideNOBR {
+  background-image: url(img/NRCS_General_-_November_2017_FINAL_nobr.jpg);
+  background-size: contain;
+  background-position: center top;
+}
+
 .titleSlide {
   background-image: url(img/NRCS_General_-_November_2017_FINAL.jpg);
   background-size: contain;

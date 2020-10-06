@@ -3,7 +3,6 @@
   <head>
     <title>Expanding-the-Toolkit-for-Soil-Scientists.utf8</title>
     <meta charset="utf-8" />
-    <script src="Expanding-the-Toolkit-for-Soil-Scientists_files/header-attrs-2.4/header-attrs.js"></script>
     <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/hygge.css" rel="stylesheet" />
     <link href="Expanding-the-Toolkit-for-Soil-Scientists_files/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
@@ -192,7 +191,7 @@ class: bodySlide
 &lt;br&gt;
 ## {`aqp`} Methods (basics)
 
-####"Promote" _data.frame_-like horizon data to a _SoilProfileCollection_ object.
+#### "Promote" _data.frame_-like horizon data to a _SoilProfileCollection_ (SPC) object.
 
 
 ```r
@@ -298,19 +297,19 @@ horizons(sp4) # "horizon" data
 
 ```
 ## # A tibble: 30 x 13
-##    id       name    top bottom     K    Mg    Ca CEC_7  sand  silt  clay    CF hzID 
-##    &lt;chr&gt;    &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;
-##  1 colusa   A         0      3   0.3  25.7   9    23      46    33    21  0.12 1    
-##  2 colusa   ABt       3      8   0.2  23.7   5.6  21.4    42    31    27  0.27 2    
-##  3 colusa   Bt1       8     30   0.1  23.2   1.9  23.7    40    28    32  0.27 3    
-##  4 colusa   Bt2      30     42   0.1  44.3   0.3  43      27    18    55  0.16 4    
-##  5 glenn    A         0      9   0.2  21.9   4.4  18.8    54    20    25  0.55 5    
-##  6 glenn    Bt        9     34   0.3  18.9   4.5  27.5    49    18    34  0.84 6    
-##  7 kings    A         0      4   0.2  12.1   1.4  23.7    43    55     3  0.5  7    
-##  8 kings    Bt1       4     13   0.6  12.1   7    18      36    49    15  0.75 8    
-##  9 kings    Bt2      13     40   0.8  17.7   4.4  20      27    45    27  0.67 9    
-## 10 mariposa A         0      3   0.6  28.3   5.8  29.3    42    26    32  0.25 10   
-## # … with 20 more rows
+##    id    name    top bottom     K    Mg    Ca CEC_7  sand  silt  clay    CF
+##    &lt;chr&gt; &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
+##  1 colu~ A         0      3   0.3  25.7   9    23      46    33    21  0.12
+##  2 colu~ ABt       3      8   0.2  23.7   5.6  21.4    42    31    27  0.27
+##  3 colu~ Bt1       8     30   0.1  23.2   1.9  23.7    40    28    32  0.27
+##  4 colu~ Bt2      30     42   0.1  44.3   0.3  43      27    18    55  0.16
+##  5 glenn A         0      9   0.2  21.9   4.4  18.8    54    20    25  0.55
+##  6 glenn Bt        9     34   0.3  18.9   4.5  27.5    49    18    34  0.84
+##  7 kings A         0      4   0.2  12.1   1.4  23.7    43    55     3  0.5 
+##  8 kings Bt1       4     13   0.6  12.1   7    18      36    49    15  0.75
+##  9 kings Bt2      13     40   0.8  17.7   4.4  20      27    45    27  0.67
+## 10 mari~ A         0      3   0.6  28.3   5.8  29.3    42    26    32  0.25
+## # ... with 20 more rows, and 1 more variable: hzID &lt;chr&gt;
 ```
 
 ???
@@ -418,7 +417,8 @@ sp4$clay       # get clay data
 ```
 
 ```
-##  [1] 21 27 32 55 25 34  3 15 27 32 25 31 33 13 21 23 15 17 12 19 14 14 22 25 40 51 67 24 25 32
+##  [1] 21 27 32 55 25 34  3 15 27 32 25 31 33 13 21 23 15 17 12 19 14 14 22 25 40
+## [26] 51 67 24 25 32
 ```
 
 --
@@ -430,7 +430,8 @@ sp4[["clay"]]  # using expression for name, not symbol
 ```
 
 ```
-##  [1] 21 27 32 55 25 34  3 15 27 32 25 31 33 13 21 23 15 17 12 19 14 14 22 25 40 51 67 24 25 32
+##  [1] 21 27 32 55 25 34  3 15 27 32 25 31 33 13 21 23 15 17 12 19 14 14 22 25 40
+## [26] 51 67 24 25 32
 ```
 
 ---
@@ -606,7 +607,8 @@ str(a.list, max.level = 1)
 ```
 
 ---
-class: bodySlideLite
+class: bodySlideNOBR
+&lt;br&gt;
 ## {`aqp`} Methods (split SPC -&gt; list)
 
 If you need to operate on groups, splitting into `list` is a good option.
@@ -986,7 +988,7 @@ class: bodySlideLite
 &lt;br&gt;
 ## {`aqp`} Soil Taxonomy &amp; Classification
 
-{`aqp`} has many functions that employ heuristics about horizon designations, geometry, and key diagnostic properties.
+{`aqp`} has many functions that employ heuristics about horizon designations, geometry, and diagnostic properties.
  
 &lt;img src="Expanding-the-Toolkit-for-Soil-Scientists_files/figure-html/unnamed-chunk-47-1.png" width="864" /&gt;
 
