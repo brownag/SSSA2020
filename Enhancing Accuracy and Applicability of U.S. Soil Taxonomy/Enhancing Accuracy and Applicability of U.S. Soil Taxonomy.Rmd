@@ -60,10 +60,10 @@ class: bodySlide
 ]
 
 ---
-class: bodySlide
+class: bodySlideNOBR
 <br>
 
-## The _Keys_ are like a set of sieves
+## The _Keys to Soil Taxonomy_ are like a set of sieves
 
 .left-column[
 ![](img/sieve.jpg)
@@ -79,10 +79,10 @@ class: bodySlide
 ]
 
 ---
-class: bodySlide
+class: bodySlideNOBR
 <br>
 
-## The _Keys_ are like a set of sieves
+## The _Keys to Soil Taxonomy_ are like a set of sieves
 
 <span>&nbsp;&nbsp;&nbsp;KST Lookup: https://brownag.shinyapps.io/KSTLookup<br></span>
 <span>&nbsp;&nbsp;&nbsp;KST Preceding Taxa: https://brownag.shinyapps.io/KSTPreceding<br></span>
@@ -95,7 +95,7 @@ The 7th Approximation to Today -- a theoretical framework
 
   
 ---
-class: bodySlide
+class: bodySlideNOBR
 <br>
 
 ## Diagnostic Features & Properties
@@ -125,9 +125,9 @@ class: bodySlide
 
 ## Soil v.s. Non-soil & Soil Depth
 
-#### _“The lower boundary that separates soil from the nonsoil underneath is most difficult to define”_
-
-> “In some instances the more weakly cemented bedrocks ... have been described below the lower boundary of soil and used to differentiate soil series (series control section, defined in chapter 17). This is permissible even though the paralithic materials below a paralithic contact are not considered soil in the true sense.” (KST, p. 1)
+> _“The lower boundary that separates soil from the nonsoil underneath is most difficult to define_
+> ...
+> In some instances the more weakly cemented bedrocks ... have been described below the lower boundary of soil and used to differentiate soil series (series control section, defined in chapter 17). This is permissible even though the paralithic materials below a paralithic contact are not considered soil in the true sense.” (KST, p. 1)
 
 <table border=0>
 <tr> 
@@ -153,150 +153,57 @@ What are the factors affecting the bedrock cementation in a set of related comp
 ---
 class: bodySlide
 <br>
-
-## Soil Age & Time 
-
-???
-
-Jenny (1941) and many others have questioned at what point a parent material becomes "soil". On the other side of the spectrum, we have the question of at what point a soil becomes a "paleosol" -- a soil formed under a different suite of conditions. Between these two extremes, we have many shades of gray -- these are local considerations that Soil Survey Staff have spent many years carefully documenting.
-
-Additions, translocations, removals drive the favorability of different reactions, the mobility of constituents and more. The concept that "soils are clay factories" essentially says that given enough time and stability, we will start to see accumulations of secondary weathering products from parent material -- this "accumulation" is the essence of the argiliic horizon, which was the third item on our list. Accumulations and depletions, in general, are essential to gathering "evidence" about process and therefore tie in very deeply with the definitions of our diagnostic features.
+## Texas "Densics"
 
 ---
 class: bodySlide
 <br>
+## Soil Age & Time 
 
+???
+
+Jenny (1941) and others have questioned at what point a parent material becomes "soil". On the other side of the spectrum, we have the question of at what point a soil becomes a "paleosol" -- a soil formed under a different suite of conditions. Between these two extremes, we have many shades of gray -- these are local considerations that Soil Survey Staff have spent many years carefully documenting.
+
+Additions, translocations, removals drive the favorability of different reactions, the mobility of constituents and more. Accumulations and depletions, in general, are essential to gathering "evidence" about soil forming process and therefore tie in deeply with the definitions of our diagnostic features. The process itself is not what is important, but rather the evidence of that process. This way, if our process understanding improves or changes, we still have fundamental physical observations that can be re-correlated under the new understanding.
+
+The concept that "soils are clay factories" essentially says that given enough time and stability, we will start to see accumulations of secondary weathering products from parent material -- this "accumulation" is the essence of the argillic horizon, which was the third item on our list. 
+
+---
+class: bodySlide
+<br>
 ## The Argillic Horizon
-
+#### Cohasset pedon example
 .left-column[
-```{r, echo=FALSE, message =  FALSE, fig.width=4, fig.height=12}
-par(mar = c(0,0,0,2.9))
+```{r, echo=FALSE, message =  FALSE, fig.width=4.5, fig.height=12}
+par(mar = c(0,0,0,6))
 library(aqp)
-# f <- fetchKSSL('loafercreek', returnMorphologicData = TRUE, simplifyColors = TRUE)
-f <- new("SoilProfileCollection", idcol = "pedon_key", hzidcol = "hzID", 
-    depthcols = c("hzn_top", "hzn_bot"), metadata = list(aqp_df_class = "data.frame", 
-        aqp_group_by = "", aqp_hzdesgn = "hzn_desgn", aqp_hztexcl = "lab_texture_class", 
-        depth_units = "cm", stringsAsFactors = FALSE, original.order = 1:5, 
-        origin = "KSSL via Soilweb / fetchKSSL"), horizons = structure(list(
-        labsampnum = c("01N01566", "01N01567", "01N01568", "01N01569", 
-        "01N01570"), pedon_key = c("28700", "28700", "28700", 
-        "28700", "28700"), hzn_top = c(0L, 5L, 10L, 28L, 51L), 
-        hzn_bot = c(5L, 10L, 28L, 51L, 74L), hzn_desgn = c("A", 
-        "BA", "Bt1", "Bt2", "Bt3"), hzn_desgn_old = c("A", "BA", 
-        "Bt1", "Bt2", "Bt3"), lab_texture_class = c("sil", "sil", 
-        "l", "l", "l"), sand = c(30.8999996, 33.5999985, 38.5, 
-        37, 35.2000008), silt = c(51.2999992, 50.7000008, 46.4000015, 
-        45.2000008, 44.4000015), clay = c(17.7999992, 15.6999998, 
-        15.1000004, 17.7999992, 20.3999996), co3_cly = c(NA, 
-        NA, NA, NA, NA), silt_f_psa = c(37.2000008, 36.7000008, 
-        31.2999992, 30.7999992, 31.3999996), silt_c_psa = c(14.1000004, 
-        14, 15.1000004, 14.3999996, 13), vfs = c(7.4000001, 8.6999998, 
-        10, 9.3999996, 8.3000002), fs = c(9.8000002, 9.1000004, 
-        10.3999996, 10.1999998, 10.3999996), ms = c(7.6999998, 
-        7.5999999, 7.9000001, 7.5, 8.1000004), cs = c(5, 6.3000002, 
-        6.4000001, 6.4000001, 5.4000001), vcs = c(1, 1.9, 3.8, 
-        3.5, 3), acid_tea = c(9.3999996, 10.1000004, 1.4, 6.8000002, 
-        3.8), base_sum = c(19.8999996, 12, 13.1999998, 16.2000008, 
-        17.8999996), al_kcl = c(NA, 0L, 0L, NA, NA), cec7 = c(23.6000004, 
-        16.1000004, 13.8999996, 15.8000002, 19.8999996), cec82 = c(29.2999992, 
-        22.1000004, 14.6000004, 23, 21.7000008), ecec = c(NA, 
-        NA, NA, NA, NA), al_sat = c(NA, NA, NA, NA, NA), bs82 = c(68L, 
-        54L, 90L, 70L, 82L), bs7 = c(84L, 75L, 95L, 100L, 90L
-        ), ex_ca = c(14.3999996, 8.5, 8, 8.8999996, 8.3000002
-        ), ex_mg = c(4.4000001, 2.9000001, 4.6999998, 6.8000002, 
-        9.1999998), ex_na = c(0.3, 0.2, 0.3, 0.3, 0.3), ex_k = c(0.8, 
-        0.4, 0.2, 0.2, 0.1), ph_h2o = c(5.8000002, 5.6999998, 
-        5.8000002, 6.1999998, 6.1999998), ph_cacl2 = c(5.3000002, 
-        4.9000001, 5, 5.4000001, 5.5), ph_kcl = c(NA, NA, NA, 
-        NA, NA), ph_sp = c(NA_real_, NA_real_, NA_real_, NA_real_, 
-        NA_real_), ph_ox = c(NA, NA, NA, NA, NA), gypl20 = c(NA, 
-        NA, NA, NA, NA), caco3 = c(NA, NA, NA, NA, NA), ec_12pre = c(NA, 
-        NA, NA, NA, NA), sar = c(NA, NA, NA, NA, NA), oc = c(NA_real_, 
-        NA_real_, NA_real_, NA_real_, NA_real_), c_tot = c(5.4899998, 
-        1.88, 0.65, 0.33, 0.67), n_tot = c(0.444, 0.179, 0.059, 
-        0.035, 0.055), fe_dith = c(2.3, 2.4000001, 2.2, 2.5999999, 
-        2.5999999), fe_ox = c(NA_real_, NA_real_, NA_real_, NA_real_, 
-        NA_real_), al_dith = c(0.1, 0.1, 0.1, 0.1, 0.1), al_ox = c(NA_real_, 
-        NA_real_, NA_real_, NA_real_, NA_real_), p_olsn = c(NA_real_, 
-        NA_real_, NA_real_, NA_real_, NA_real_), p_nz = c(NA_integer_, 
-        NA_integer_, NA_integer_, NA_integer_, NA_integer_), 
-        db_13b = c(NA_real_, NA_real_, NA_real_, NA_real_, NA_real_
-        ), db_od = c(NA_real_, NA_real_, NA_real_, NA_real_, 
-        NA_real_), COLEws = c(NA_real_, NA_real_, NA_real_, NA_real_, 
-        NA_real_), whc = c(NA_real_, NA_real_, NA_real_, NA_real_, 
-        NA_real_), w3cld = c(NA_real_, NA_real_, NA_real_, NA_real_, 
-        NA_real_), w15l2 = c(13.6000004, 8, 7.0999999, 8.3000002, 
-        9.3999996), w15cly = c(0.76, 0.51, 0.47, 0.47, 0.46), 
-        cec7_cly = c(1.33, 1.03, 0.92, 0.89, 0.98), frags = c(0L, 
-        2L, 21L, 13L, 12L), wrd_l2 = c(NA_real_, NA_real_, NA_real_, 
-        NA_real_, NA_real_), theta_r = c(NA_real_, NA_real_, 
-        NA_real_, NA_real_, NA_real_), theta_s = c(NA_real_, 
-        NA_real_, NA_real_, NA_real_, NA_real_), alpha = c(NA_real_, 
-        NA_real_, NA_real_, NA_real_, NA_real_), npar = c(NA_real_, 
-        NA_real_, NA_real_, NA_real_, NA_real_), Ks = c(NA_real_, 
-        NA_real_, NA_real_, NA_real_, NA_real_), Ko = c(NA_real_, 
-        NA_real_, NA_real_, NA_real_, NA_real_), Lpar = c(NA_real_, 
-        NA_real_, NA_real_, NA_real_, NA_real_), ex_k_saturation = c(0.040201005833186, 
-        0.0333333333333333, 0.0151515153810836, 0.0123456784026825, 
-        0.005586592303611), estimated_oc = c(5.4899998, 1.88, 
-        0.65, 0.33, 0.67), estimated_om = c(9.4647596552, 3.24112, 
-        1.1206, 0.56892, 1.15508), estimated_c_to_n = c(12.3648644144144, 
-        10.5027932960894, 11.0169491525424, 9.42857142857143, 
-        12.1818181818182), estimated_ph_h2o = c(5.8000002, 5.6999998, 
-        5.8000002, 6.1999998, 6.1999998), hzID = c("1", "2", 
-        "3", "4", "5"), d_r = c(0.759709917687259, 0.759709917687259, 
-        0.651690566604579, 0.651690566604579, 0.651690566604579
-        ), d_g = c(0.535518985781698, 0.535518985781698, 0.432094659694293, 
-        0.432094659694293, 0.432094659694293), d_b = c(0.373617113895021, 
-        0.373617113895021, 0.276238863034852, 0.276238863034852, 
-        0.276238863034852), d_hue = c("5YR", "5YR", "5YR", "5YR", 
-        "5YR"), d_value = c(6L, 6L, 5L, 5L, 5L), d_chroma = c(6L, 
-        6L, 6L, 6L, 6L), d_sigma = c(NA, NA, NA, NA, NA), m_r = c(0.651690566604579, 
-        0.651690566604579, 0.540971684161612, 0.540971684161612, 
-        0.540971684161612), m_g = c(0.432094659694293, 0.432094659694293, 
-        0.330593022989956, 0.330593022989956, 0.330593022989956
-        ), m_b = c(0.276238863034852, 0.276238863034852, 0.185293266355343, 
-        0.185293266355343, 0.185293266355343), m_hue = c("5YR", 
-        "5YR", "5YR", "5YR", "5YR"), m_value = c(5L, 5L, 4L, 
-        4L, 4L), m_chroma = c(6L, 6L, 6L, 6L, 6L), m_sigma = c(NA, 
-        NA, NA, NA, NA), moist_soil_color = c("#A66E46", "#A66E46", 
-        "#8A542F", "#8A542F", "#8A542F"), dry_soil_color = c("#C2895F", 
-        "#C2895F", "#A66E46", "#A66E46", "#A66E46")), row.names = c(NA, 
-    -5L), class = "data.frame"), site = structure(list(pedon_key = "28700", 
-        pedlabsampnum = "01N0263", pedon_id = "300J", pscs_top = 10L, 
-        pscs_bottom = 61L, pedon_completeness_index = 6L, state = "California", 
-        mlra = 18L, geomposhill = NA_character_, geomposmntn = NA, 
-        geompostrce = NA, geomposflats = NA, hillslopeprof = NA_character_, 
-        geomslopeseg = NA, pmgroupname = "residuum weathered from metavolcanics", 
-        drainagecl = NA_character_, taxonname = "LOAFERCREEK", 
-        taxorder = "Alfisols", taxsuborder = "Xeralfs", taxgrtgroup = "Haploxeralfs", 
-        taxsubgrp = "Typic Haploxeralfs", taxpartsize = "fine-loamy", 
-        taxpartsizemod = "not used", taxceactcl = "superactive", 
-        taxreaction = "not used", taxtempcl = "thermic", taxmoistscl = "Xeric", 
-        taxtempregime = "thermic", soiltaxedition = "eighth edition", 
-        osdtypelocflag = 0L, x = -121.4367972, y = 39.4449639), row.names = c(NA, 
-    -1L), class = "data.frame"), sp = sp::SpatialPoints(data.frame(0,0))[-1,], diagnostic = structure(list(), .Names = character(0), row.names = integer(0), class = "data.frame"), 
-    restrictions = structure(list(), .Names = character(0), row.names = integer(0), class = "data.frame"))
+library(soilDB)
+f <- fetchKSSL('cohasset', returnMorphologicData = TRUE, simplifyColors = TRUE)
+f <- f$SPC[7,]
  
-plot(f, color = "moist_soil_color", cex.names = 2, print.id = FALSE)
+m <- get.increase.matrix(f, 'clay', crit.clay.argillic, 30)
+d <- get.increase.depths(f, 'clay', crit.clay.argillic, 30)[1]
+row.names(m) <- round(f$clay,1)
+colnames(m) <- round(f$clay,1)
+
+plot(f, color = "moist_soil_color", cex.names = 2.6, print.id = FALSE, axis.line.offset = -2.25)
+abline(h = d, lty = 2)
 ```
 ]
 
 .right-column[
-#### Laboratory measured clay content, "increase matrix"
+
+.center[
+#### Laboratory measured clay content (%), "increase matrix"
 ```{r, echo=FALSE}
-m <- get.increase.matrix(f, 'clay', crit.clay.argillic, 30)
-d <- get.increase.depths(f, 'clay', crit.clay.argillic, 30)
-row.names(m) <- round(f$clay,1)
-colnames(m) <- round(f$clay,1)
 m
 ```
-
-- Horizons #2 and #3 have sufficient difference from horizon #5 to meet the clay increase requirement, but horizon #3 is  _within_ a vertical distance of 30cm.
-
-- Note that Horizons #1 and #4 have same clay content.
+]
 
 - Argillic & Particle Size Control Section start at `r paste0(d,'cm')`
+
+- Horizon #4 meets the clay increase requirement relative to #1, #2 and #3, but increase occurs _within a vertical distance_ of only #3.
+
 ]
 
 ---
@@ -306,27 +213,79 @@ class: bodySlide
 ## The Soil Surface
 
 ---
-class: bodySlide
+class: bodySlideNOBR
+## The Mollic Epipedon
+
+.top[![](img/mollic_requirement.png)]
+
+---
+class: bodySlideNOBR
+<br>
+## The Mollic Epipedon
+
+.center[
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+par(mar=c(0,0,0,8))
+load(file="img/tama.Rda")
+tama$SPC$mollicthk <- profileApply(tama$SPC, mollic.thickness.requirement, clay.attr = 'clay')
+tama$SPC$is_mollic_color <- hasDarkColors(tama$SPC, d_value = NA)
+horizons(tama$SPC)$is_mollic_mask <- rgb(0,0,0)
+horizons(tama$SPC)$is_mollic_mask[!tama$SPC$is_mollic_color] <- rgb(1,1,1)
+
+# addDiagnosticBracket(tama$SPC, kind = 'particle size control section', lwd=3)
+# addDiagnosticBracket(tama$SPC, kind = 'minimum mollic/umbric thickness', lwd=3,
+#                      offset=0, tick.length=0, col="green")
+
+tama2 <- harmonize(tama$SPC, list(mollic = list(moist_color = "moist_soil_color", 
+                                                is_mollic_color = "is_mollic_mask")))
+```
+```{r, echo=FALSE, fig.width=20, fig.height=15, message=F, warning=F}
+groupedProfilePlot(tama2[11:18,], name.style = "left-center",
+                   groups = "hgroup", color = "mollic", 
+                   cex.names = 2.4, group.name.cex = 2.4)
+```
+]
+---
+class: bodySlideNOBR
 <br>
 
 ## The Mollic Epipedon
 
+.center[
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+par(mar=c(0,0,0,12))
+load(file="img/tama.Rda")
+tama$SPC$mollicthk <- profileApply(tama$SPC, mollic.thickness.requirement, clay.attr = 'clay')
+tama$SPC$is_mollic_color <- hasDarkColors(tama$SPC, d_value = NA)
+horizons(tama$SPC)$is_mollic_mask <- rgb(0,0,0)
+horizons(tama$SPC)$is_mollic_mask[!tama$SPC$is_mollic_color] <- rgb(1,1,1)
+
+# addDiagnosticBracket(tama$SPC, kind = 'particle size control section', lwd=3)
+# addDiagnosticBracket(tama$SPC, kind = 'minimum mollic/umbric thickness', lwd=3,
+#                      offset=0, tick.length=0, col="green")
+
+tama2 <- harmonize(tama$SPC, list(mollic = list(moist_color = "moist_soil_color", 
+                                                is_mollic_color = "is_mollic_mask")))
+```
+```{r, echo=FALSE, fig.width=20, fig.height=15, message=F, warning=F}
+groupedProfilePlot(tama2[11:18,], name.style = "left-center",
+                   groups = "hgroup", color = "mollic", 
+                   cex.names = 2.4, group.name.cex = 2.4)
+```
+]
+
 ---
 class: bodySlide
 <br>
-
 ## Soil Series
 
 ---
 class: bodySlide
 <br>
-
 ## Future of Soil Taxonomy
 
 
 ---
-class: bodySlide
-<br>
 
 ## Impacts on Soil Mapping
 
