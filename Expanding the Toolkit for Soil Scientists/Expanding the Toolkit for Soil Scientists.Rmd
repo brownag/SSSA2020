@@ -695,7 +695,7 @@ class: bodySlide
 
 ]
 
-_USDA is an equal opportunity provider and employer._
+_USDA is an equal opportunity provider, employer, and lender._
 
 ---
 class: bodySlide
@@ -708,7 +708,11 @@ Toolkit for Soil Scientists. Computers & Geosciences. 52:258 - 268.
 
 McGahan, D.G., Southard, R.J, Claassen, V.P. 2009. Plant-Available Calcium Varies Widely in Soils on Serpentinite Landscapes. Soil Sci. Soc. Am. J. 73: 2087-2095.
 
+Pedersen, T.L., B. Nicolae, and R. François 2020. farver: High Performance Colour Space Manipulation. R package version 2.0.3. https://CRAN.R-project.org/package=farver
+
 R Core Team. 2020. R: A language and environment for statistical computing. R Foundation for
 Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
 
 Xie, Y. 2020. xaringan: Presentation Ninja. R package version 0.17.1. https://github.com/yihui/xaringan
+
+.bottom[Slides: https://github.com/brownag/SSSA2020]

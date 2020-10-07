@@ -297,19 +297,19 @@ horizons(sp4) # "horizon" data
 
 ```
 ## # A tibble: 30 x 13
-##    id    name    top bottom     K    Mg    Ca CEC_7  sand  silt  clay    CF
-##    &lt;chr&gt; &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
-##  1 colu~ A         0      3   0.3  25.7   9    23      46    33    21  0.12
-##  2 colu~ ABt       3      8   0.2  23.7   5.6  21.4    42    31    27  0.27
-##  3 colu~ Bt1       8     30   0.1  23.2   1.9  23.7    40    28    32  0.27
-##  4 colu~ Bt2      30     42   0.1  44.3   0.3  43      27    18    55  0.16
-##  5 glenn A         0      9   0.2  21.9   4.4  18.8    54    20    25  0.55
-##  6 glenn Bt        9     34   0.3  18.9   4.5  27.5    49    18    34  0.84
-##  7 kings A         0      4   0.2  12.1   1.4  23.7    43    55     3  0.5 
-##  8 kings Bt1       4     13   0.6  12.1   7    18      36    49    15  0.75
-##  9 kings Bt2      13     40   0.8  17.7   4.4  20      27    45    27  0.67
-## 10 mari~ A         0      3   0.6  28.3   5.8  29.3    42    26    32  0.25
-## # ... with 20 more rows, and 1 more variable: hzID &lt;chr&gt;
+##    id       name    top bottom     K    Mg    Ca CEC_7  sand  silt  clay    CF hzID 
+##    &lt;chr&gt;    &lt;chr&gt; &lt;int&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;
+##  1 colusa   A         0      3   0.3  25.7   9    23      46    33    21  0.12 1    
+##  2 colusa   ABt       3      8   0.2  23.7   5.6  21.4    42    31    27  0.27 2    
+##  3 colusa   Bt1       8     30   0.1  23.2   1.9  23.7    40    28    32  0.27 3    
+##  4 colusa   Bt2      30     42   0.1  44.3   0.3  43      27    18    55  0.16 4    
+##  5 glenn    A         0      9   0.2  21.9   4.4  18.8    54    20    25  0.55 5    
+##  6 glenn    Bt        9     34   0.3  18.9   4.5  27.5    49    18    34  0.84 6    
+##  7 kings    A         0      4   0.2  12.1   1.4  23.7    43    55     3  0.5  7    
+##  8 kings    Bt1       4     13   0.6  12.1   7    18      36    49    15  0.75 8    
+##  9 kings    Bt2      13     40   0.8  17.7   4.4  20      27    45    27  0.67 9    
+## 10 mariposa A         0      3   0.6  28.3   5.8  29.3    42    26    32  0.25 10   
+## # ... with 20 more rows
 ```
 
 ???
@@ -417,8 +417,7 @@ sp4$clay       # get clay data
 ```
 
 ```
-##  [1] 21 27 32 55 25 34  3 15 27 32 25 31 33 13 21 23 15 17 12 19 14 14 22 25 40
-## [26] 51 67 24 25 32
+##  [1] 21 27 32 55 25 34  3 15 27 32 25 31 33 13 21 23 15 17 12 19 14 14 22 25 40 51 67 24 25 32
 ```
 
 --
@@ -430,8 +429,7 @@ sp4[["clay"]]  # using expression for name, not symbol
 ```
 
 ```
-##  [1] 21 27 32 55 25 34  3 15 27 32 25 31 33 13 21 23 15 17 12 19 14 14 22 25 40
-## [26] 51 67 24 25 32
+##  [1] 21 27 32 55 25 34  3 15 27 32 25 31 33 13 21 23 15 17 12 19 14 14 22 25 40 51 67 24 25 32
 ```
 
 ---
@@ -1025,7 +1023,7 @@ class: bodySlide
 
 ]
 
-_USDA is an equal opportunity provider and employer._
+_USDA is an equal opportunity provider, employer, and lender._
 
 ---
 class: bodySlide
@@ -1038,10 +1036,14 @@ Toolkit for Soil Scientists. Computers &amp; Geosciences. 52:258 - 268.
 
 McGahan, D.G., Southard, R.J, Claassen, V.P. 2009. Plant-Available Calcium Varies Widely in Soils on Serpentinite Landscapes. Soil Sci. Soc. Am. J. 73: 2087-2095.
 
+Pedersen, T.L., B. Nicolae, and R. François 2020. farver: High Performance Colour Space Manipulation. R package version 2.0.3. https://CRAN.R-project.org/package=farver
+
 R Core Team. 2020. R: A language and environment for statistical computing. R Foundation for
 Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
 
 Xie, Y. 2020. xaringan: Presentation Ninja. R package version 0.17.1. https://github.com/yihui/xaringan
+
+.bottom[Slides: https://github.com/brownag/SSSA2020]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
