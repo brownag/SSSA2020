@@ -34,7 +34,7 @@ Abstract:
 
 Pedologic knowledge has been hard won through the work of countless soil and earth scientists. This knowledge been distilled into standards and classification systems that allow us to consistently reason over diverse and complex natural systems. As new needs arise and knowledge is gained, criteria for classification and separation of concepts are refined and historic criteria are called in to question. Determining potential impacts of new or altered criteria throughout a classification system is complicated and time-consuming – perfect for the application of computer-aided reasoning. However, soils data and soil classification systems, particularly U.S. Soil Taxonomy, have nuances that require careful consideration.
 
-Changes to criteria that affect fundamental diagnostic features in Soil Taxonomy can have large influences on classification and, by association, grouping of soil concepts that are similar for use and management in soil surveys. We have developed data structures and computer code in the R package “aqp," or Algorithms for Quantitative Pedology, that are capable of reasoning over soil profile data and criteria. This implementation of concepts has offered novel opportunities for data-driven analyses relating properties (predicted or observed) to taxonomic or interpretive groups. Routines for programmatic identification of soil features such as argillic horizons and mollic epipedons are a fundamental steps towards automated classification using U.S. Soil Taxonomy.
+Changes to criteria that affect fundamental diagnostic features in Soil Taxonomy can have large influences on classification and, by association, grouping of soil concepts that are similar for use and management in soil surveys. We have developed data structures and computer code in the R package “aqp," or Algorithms for Quantitative Pedology, that are capable of reasoning over soil profile data and criteria. This implementation of concepts has offered novel opportunities for data-driven analyses relating properties (predicted or observed) to taxonomic or interpretive groups. Routines for programmatic identification of soil features such as Argillic Horizons and Mollic Epipedons are a fundamental steps towards automated classification using U.S. Soil Taxonomy.
 -->
 
 ```{r setup, echo = FALSE}
@@ -107,7 +107,7 @@ The 7th Approximation to Today -- a theoretical framework
 class: bodySlideNOBR
 <br>
 
-## Diagnostic Features & Properties
+## Diagnostic Features and Properties
 
 .pull-left[
 ![](img/kst_12_cover.PNG)
@@ -118,7 +118,7 @@ class: bodySlideNOBR
 library(kableExtra)
 diag <- read.csv("subgrp_diag_counts_table.csv")
 #knitr::kable(diag, row.names = FALSE, )
-kable_classic(kbl(diag[1:12,], caption = "Times Used in Subgroup to Order Keys"),  full_width = F)
+kable_classic(kbl(diag[1:11,], caption = "Times Used in Subgroup to Order Keys"),  full_width = F)
 ```
 ]
 
@@ -130,7 +130,7 @@ Diagnostic features and properties are the heart of soil taxonomy. These feature
 class: bodySlide
 <br>
 
-## Soil v.s. Non-soil & Soil Depth
+## Soil v.s. Nonsoil and Soil Depth
 
 > _“The lower boundary that separates soil from the nonsoil underneath is most difficult to define_
 > ...
@@ -162,7 +162,7 @@ I think it is continually important for pedologists to focus on processes that m
 Jenny (1941) and others have questioned at what point a parent material becomes "soil". On the other side of the spectrum, we have the question of at what point a soil becomes a "paleosol". Between these two extremes, we have many shades of gray -- these are local considerations that Soil Survey Staff have spent many years carefully documenting. We must accept that soils form essentially immediately after deposition stops, but we may not see the evidence of that for some time (say, several hundred years)
 
 ---
-class: bodySlide
+class: bodySlideLite
 <br>
 ## The Argillic Horizon
 **[Cohasset](https://casoilresource.lawr.ucdavis.edu/see/#Cohasset) -_ Fine-loamy, mixed, active, mesic Ultic Haploxeralfs_**
@@ -178,12 +178,13 @@ f <- f$SPC[7,]
  
 m <- get.increase.matrix(f, 'clay', crit.clay.argillic, 30)
 d <- get.increase.depths(f, 'clay', crit.clay.argillic, 30)[1]
-row.names(m) <- round(f$clay,1)
+row.names(m) <- paste(f$hzn_desgn, round(f$clay,1))
 colnames(m) <- round(f$clay,1)
+f$hzn_desgn <- paste0(" ",f$hzn_desgn)
 
 plot(f, color = "moist_soil_color", cex.names = 2.6, print.id = FALSE, axis.line.offset = -2.25)
 middepth <- f$hzn_top + (f$hzn_bot - f$hzn_top)/2
-text(1, middepth, labels = round(f$clay,1), col = "yellow", cex=2.5)
+text(1, middepth, labels = round(f$clay,1), col = "yellow", cex = 2.5)
 abline(h = d, lty = 2, lwd = 3, color = "yellow")
 ```
 ]
@@ -201,9 +202,10 @@ as.data.frame(m2)
 ```
 ]
 
-- Argillic & Particle Size Control Section start at `r paste(d,'cm')`
+ - A difference in clay content of 0.5% in the **Bt1** horizon<br>shifts the top of the Particle-Size Control Section downward by 34 cm (to the top of the **Bt2**).
 
-- A 0.5% clay content difference in the **Bt1** shifts the Particle Size Control Section downward by 34 cm 
+ - The Argillic Horizon and Particle-Size Control Section start at `r paste(d,'cm')`.
+
 
 ]
 
@@ -217,19 +219,19 @@ class: bodySlide
 
 #### Problems
 
- - _Upper bound of Argillic_ &mdash; tied to Particle Size Control Section boundary
+ - _Upper boundary of Argillic Horizon_ &mdash; tied to Particle-Size Control Section boundary.
 
 --
  
- - _Bottom of the Argillic_ &mdash; depends on (lack of) clay films or other accumulation
+ - _Bottom of the Argillic Horizon_ &mdash; depends on (lack of) clay films or other accumulation.
 
 --
 
- - _Truncated Argillics_ &mdash; depends on a lithologic discontinuity or exposure
+ - _Truncated Argillic Horizons_ &mdash; depends on a lithologic discontinuity or exposure.
  
 --
 
- - _"Wimpy" Argillics_ &mdash; low total clay content, marginal clay increase, limited development of morphology (e.g. clay films)
+ - _"Wimpy" Argillic Horizons_ &mdash; low total clay content, marginal clay increase, limited development of morphology (e.g. clay films)
  
  
 ???
@@ -271,39 +273,11 @@ tama2 <- harmonize(tama$SPC, list(mollic = list(moist_color = "moist_soil_color"
 ```{r, echo=FALSE, fig.width=12, fig.height=8, message=F, warning=F}
 par(mar=c(0,0,0,0))
 groupedProfilePlot(tama2[11:18,], name.style = "left-center",
-                   groups = "hgroup", color = "mollic", print.id = FALSE, width = 0.4,
+                   groups = "hgroup", color = "mollic", print.id = FALSE, width = 0.35,
                    cex.names = 1.3, group.name.cex = 1.8, axis.line.offset = -4.2)
+#abline(h=c(25,75))
 ```
 
----
-class: bodySlideNOBR
-<br>
-
-## The Mollic Epipedon
- 
-#### Problems
-
- - Physical mixing criteria are confusing, impossible to apply retroactively, and subjective when materials are very dissimilar in composition or density
-
---
-
- - The sliding scale thickness requirement is commonly misinterpreted and may be difficult to apply consistently
-  
-  - Simultaneous dependency on: texture class of subhorizons, distribution of organic carbon with depth, identifiable secondary carbonates, petrocalcic/duripan/fragipan, densic/lithic/paralithic contacts, argillic, cambic, natric, oxic or spodic horizons. Not only does it depend on presence/absence, but required thickness is determined by _depths to top or bottom_ of these features.
-
---
-
- - Several exceptions: keeping depositional phases in the Mollisols, aridic soil moisture regimes, color and organic carbon requirements in high carbonate materials 
- 
---
- 
-
-???
-
- - These criteria add a lot of "conceptual overhead" with possibly little, or infrequent, benefits. 
- 
-We need to query the modern data (tools and extent of which they did not have access to back in the day) to determine which of these criteria are valuable. The logic in the Keys can likely be simplified while retaining the same key ideas.
- 
 ---
 class: bodySlideLite
 <br>
@@ -322,10 +296,10 @@ addDiagnosticBracket(s.sub, kind = 'minimum mollic/umbric thickness', lwd=3,
                      offset=0, tick.length=0, col="green")
 abline(h=c(18+0.5,25+0.5,54+0.5,75+0.5), lty=2)
 
-#mtext("aqp calculated\nMollic/Umbric Minimum Thickness Requirement\n& Particle Size Control Section Boundaries", 3)
-legend("bottomleft", c("particle size control section",
-                       "minimum mollic/umbric thickness",
-                       "absolute depths: 18, 25, 54, 75 cm"), lwd=c(3,3,1), lty=c(1,1,2),
+#mtext("aqp calculated\nMollic/Umbric Minimum Thickness Requirement\n& Particle-Size Control Section Boundaries", 3)
+legend("bottomleft", c("Particle-Size Control Section",
+                       "Minimum Mollic/Umbric Thickness",
+                       "Absolute depths: 18, 25, 54, 75 cm"), lwd=c(3,3,1), lty=c(1,1,2),
        col=c("black","green","black"))
 ```
 
@@ -333,16 +307,47 @@ legend("bottomleft", c("particle size control section",
 
 Thickness requirement depends on the "solum thickness" (with regard to specific diagnostic features and properties)
 
-The dependency of something as fundamental as the mollic epipedon on so many other diagnostic features resaults in very difficult reasoning and juggling of depths by the user. It is also not clear how conflicts are resolved when multiple features that affect criteria are identified in a particular pedon. I assume you take the most restrictive thickness requirement?
+The dependency of something as fundamental as the Mollic Epipedon on so many other diagnostic features resaults in very difficult reasoning and juggling of depths by the user. It is also not clear how conflicts are resolved when multiple features that affect criteria are identified in a particular pedon. I assume you take the most restrictive thickness requirement?
+---
+class: bodySlideNOBR
+<br>
+
+## The Mollic Epipedon
+ 
+#### Problems
+
+ - Physical mixing criteria are confusing, impossible to apply retroactively, and subjective when materials are very dissimilar in composition or density.
+
+--
+
+ - The sliding scale thickness requirement is commonly misinterpreted and may be difficult to apply consistently.
+  
+--
+
+  - Simultaneous dependency on: texture class of subhorizons, distribution of organic carbon with depth, identifiable secondary carbonates, petrocalcic/duripan/fragipan, densic/lithic/paralithic contacts, and argillic, cambic, natric, oxic, or spodic horizons. Not only does it depend on presence or absence, but required thickness is determined by _depths to top or bottom_ of these features.
+
+--
+
+ - Several exceptions: keeping depositional phases in the Mollisols, aridic soil moisture regimes, and unique color and organic carbon requirements in materials with a high content of carbonate
+
+???
+
+ - These criteria add a lot of "conceptual overhead" with possibly little, or infrequent, benefits. 
+ 
+We need to query the modern data (tools and extent of which they did not have access to back in the day) to determine which of these criteria are valuable. The logic in the Keys can likely be simplified while retaining the same key ideas.
 
 ---
 class: bodySlide
 <br>
 ## Soil Series
 
- - The soil series is the lowest, most detailed taxonomic level in U.S. Soil Taxonomy
+ - The soil series is the lowest, most detailed taxonomic level in U.S. Soil Taxonomy.
+
+--
 
  - Nominally, a soil series has a _single_ family-level classification. This is in the _Official Series Description_ (OSD).
+
+--
  
  - The _Range in Characteristics_ (RIC) should **not** range outside the series family.
  
@@ -369,19 +374,19 @@ class: bodySlide
 <br>
 ## Soil Series in Soil Mapping
 
- - Soil mapunit component ranges need not exactly match those of the series RIC, often they are wider.
+ - Soil map unit component ranges need not exactly match those of the series RIC; often they are wider.
 
- - In practice, especially in less-detailed (Order 3+) mapping, Series-level components in the U.S. include:
+ - In practice, especially in less-detailed (Order 3+) mapping, series-level components in the U.S. include:
  
   - Soils _within_ the RIC of the series
   
-  - Soils _outside_ the RIC that _have same family_ as the named series (generally: "similar soils", formerly: "variant")
+  - Soils _outside_ the RIC that _have same family_ as the named series (generally: "similar soils," formerly: "variant")
   
   - Soils _not_ in the same family (taxadjuncts or less-prevalent series) that _interpret_ the "same" based on local model
   
- - _Dissimilar_ soils are separated based on interpretive difference(s) from the dominant condition in a mapunit.
+ - _Dissimilar_ soils are separated based on interpretive difference(s) from the dominant condition in a map unit.
  
-   - Dissimilar, _non-limiting_, soils may not be reflected consistently in <br>more general mapping if they are not extensive.
+   - Dissimilar, _non-limiting_ soils may not be reflected consistently in <br>more general mapping if they are not extensive.
 
 ---
 class: bodySlide
@@ -395,7 +400,7 @@ class: bodySlide
 .pull-right[
 #### To reconcile the "divisive" nature of the Keys and questions of "similarity" &mdash; _what do we need?_
  
- - Graph databases  capable of querying complex relationships between taxa, criteria, and metadata.
+ - Graph databases  capable of querying complex relationships between taxa, criteria, and metadata
  
  - A U.S. Soil Taxonomy ontology to define our terms and serve as a scaffold for other National Cooperative Soil Survey Standards
 
@@ -413,11 +418,11 @@ class: bodySlide
 .right-column[
 #### Goals and dreams
 
-1. "Fuzzy taxon membership" developed using _defined_ weights, assumptions and heuristics
+1. "Fuzzy taxon membership" developed using _defined_ weights, assumptions, and heuristics
 
 2. Sensitivity analysis using properties _and_ geometry for "most likely" profile taxonomic placement
     
-3. Regional/purposive subsets or "views" of the complete  taxonomy: to aid in education, reduce fatigue and increase accessibility for non-specialists 
+3. Regional/purposive subsets or "views" of the complete  taxonomy: to aid in education, reduce fatigue, and increase accessibility for non-specialists 
  
 4. Justification (and possible simplification) of concepts
  
@@ -433,7 +438,7 @@ class: bodySlideNOBR
 <br>
 ## Impacts on Soil Mapping
 
- - All soils are "different" &mdash; defined rules and systems allow us to "consistently" reason over them 
+ - All soils are "different" &mdash; defined rules and systems allow us to "consistently" reason over them.
  
  - _Taxadjunct is **not** a dirty word._ Embrace the variations nature has to offer.
 
@@ -486,7 +491,7 @@ class: bodySlide
 
 ## References
 
-Beaudette, D.E., Roudier P., and A.T. O'Geen. 2013. Algorithms for Quantitative Pedology: A
+Beaudette, D.E., P. Roudier, and A.T. O'Geen. 2013. Algorithms for Quantitative Pedology: A
 Toolkit for Soil Scientists. Computers & Geosciences. 52:258 - 268.
 
 National Cooperative Soil Survey. National Cooperative Soil Characterization Database. Available online. Accessed [10/1/2020].
