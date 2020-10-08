@@ -286,9 +286,9 @@ class: bodySlideLite
 ```{r, echo=FALSE,fig.width=12,fig.height=7}
 par(mar=c(0,0,0,5))
 load("img/mollicthk.Rda")
-s.sub@horizons[11,]$soil_color <- munsell2rgb("10YR", 2, 1)
-s.sub@diagnostic[6,]$top <- 7
-s.sub@diagnostic[6,]$bottom <- 32
+# s.sub@horizons[11,]$soil_color <- munsell2rgb("10YR", 2, 1)
+# s.sub@diagnostic[6,]$top <- 7
+# s.sub@diagnostic[6,]$bottom <- 32
 plotSPC(s.sub, label = "criteria", axis.line.offset = -3.5, cex.names = 1.1, id.style = "top",
         name.style = "left-center")
 addDiagnosticBracket(s.sub, kind = 'particle size control section', lwd=3)

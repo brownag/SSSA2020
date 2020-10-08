@@ -33,3 +33,4 @@ f.sub.bad <- subset(f.sub, profile_id(f.sub) %in% c(15745,25651,25652,25653))
 # look at 'em
 plot(f.sub.bad, color = "moist_soil_color", cex.names = 1.2)
 
+profileApply(f.sub.bad, getArgillicBounds, clay.attr = "clay")
